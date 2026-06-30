@@ -1,0 +1,95 @@
+<div class="hero">
+
+  <div class="topbar">
+    <div class="logo">
+      LAZHOPPEE
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/products">Products</a>
+      <a routerLink="/cart">
+  Cart ({{ cartCount }})
+</a>
+    </div>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search products..." />
+      <button>Search</button>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <h1>Welcome to Lazhoppee</h1>
+    <p>Discover the best products at unbeatable prices!</p>
+    <button routerLink="/products">
+      Shop Now
+    </button>
+  </div>
+
+</div>
+<section class="featured-products">
+  <h2>🔥 Featured Products</h2>
+
+  <div class="product-grid">
+
+    <div class="product-card" routerLink="/product/1">
+      <img src="assets/images/Product_01.jpg" alt="Helmet 1">
+      <h3>Helmet 1</h3>
+      <p>₱4500</p>
+    </div>
+
+    <div class="product-card" routerLink="/product/2">
+      <img src="assets/images/Product_02.jpg" alt="Helmet 2">
+      <h3>Helmet 2</h3>
+      <p>₱2500</p>
+    </div>
+
+    <div class="product-card" routerLink="/product/3">
+      <img src="assets/images/Product_03.jpg" alt="Helmet 3">
+      <h3>Helmet 3</h3>
+      <p>₱1200</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="categories">
+  <h2>📦 Popular Categories</h2>
+
+  <div class="category-grid">
+    <div class="category-card">Full Face Helmet</div>
+    <div class="category-card">Modular Helmet</div>
+    <div class="category-card">Open Face Helmet</div>
+  </div>
+</section>
+
+<footer>
+
+  <div class="footer-content">
+
+    <div>
+      <h3>Lazhoppee</h3>
+      <p>Your trusted motorcycle gear store.</p>
+    </div>
+
+    <div>
+      <h3>Quick Links</h3>
+      <p>Home</p>
+      <p>Products</p>
+      <p>Cart</p>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <p>support@lazhoppee.com</p>
+      <p>+63 912 345 6789</p>
+    </div>
+
+  </div>
+
+  <p class="copyright">
+    © 2026 Lazhoppee. All Rights Reserved.
+  </p>
+
+</footer>

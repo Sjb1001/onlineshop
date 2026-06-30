@@ -1,0 +1,54 @@
+.cart-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Fix item alignment inside mat-list-item */
+.cart-item-img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 16px;
+}
+
+/* Footer layouts */
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.card-item-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.total-amount {
+  color: var(--mdc-theme-primary, #3f51b5); /* Uses your theme primary color */
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between; /* Pushes Clear to left, Checkout to right */
+  gap: 8px;
+}
+
+/* Optional: Make buttons full width on small mobile screens */
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column-reverse;
+  }
+}
