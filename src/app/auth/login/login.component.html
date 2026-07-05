@@ -1,0 +1,32 @@
+<div class="auth-container">
+
+  <div class="auth-card">
+
+    <h1>LazHoppee</h1>
+    <h2>Welcome Back!</h2>
+
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="email">
+
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password">
+
+    <button class="login-btn" (click)="login()">
+      Login
+    </button>
+
+    <p>
+      Don't have an account?
+    </p>
+
+    <button class="switch-btn" routerLink="/register">
+      Register Here
+    </button>
+
+  </div>
+
+</div>

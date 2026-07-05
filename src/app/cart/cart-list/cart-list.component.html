@@ -7,7 +7,7 @@
         <div class="cart-item-content">
           <img
             class="cart-item-img"
-            [src]="'/assets/images/' + item.imageUrl"
+            [src]="'/assets/images/' + item.image"
             [alt]="item.name"
           />
           <div>
@@ -16,7 +16,7 @@
               {{ item.price | currency: "PHP" }}
             </p>
           </div>
-          
+
         </div>
       </div>
     <!-- </mat-list> -->

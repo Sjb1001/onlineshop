@@ -1,14 +1,9 @@
-export class Product {
-    id: number = 0;
-    name: string = "";
-    price: number = 0;
-    imageUrl: string = "";
+export interface Product {
+  _id?: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string;
+  stock: number;
 }
-
-export class Cart {
-    id: number = 0;
-    name: string = "";
-    price: number = 0;
-    imageUrl: string = "";
-}
-

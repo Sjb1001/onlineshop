@@ -1,0 +1,56 @@
+<div class="container">
+
+    <h1>Store Management</h1>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>Store</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let store of stores">
+
+                <td>{{ store.storeName }}</td>
+
+                <td>{{ store.owner?.fullname }}</td>
+
+                <td>{{ store.status }}</td>
+
+                <td>
+
+                    <button
+                        *ngIf="store.status=='pending'"
+                        (click)="approve(store._id)">
+                        Approve
+                    </button>
+
+                    <button
+                        *ngIf="store.status=='pending'"
+                        (click)="reject(store._id)">
+                        Reject
+                    </button>
+
+                    <span *ngIf="store.status!='pending'">
+
+                        {{ store.status }}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

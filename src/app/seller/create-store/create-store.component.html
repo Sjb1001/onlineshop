@@ -1,0 +1,24 @@
+<div class="store-container">
+
+    <h2>Create Your Store</h2>
+
+    <input
+        type="text"
+        placeholder="Store Name"
+        [(ngModel)]="storeName">
+
+    <textarea
+        placeholder="Description"
+        [(ngModel)]="description">
+    </textarea>
+
+    <input
+        type="text"
+        placeholder="Address"
+        [(ngModel)]="address">
+
+    <button (click)="createStore()">
+        Create Store
+    </button>
+
+</div>

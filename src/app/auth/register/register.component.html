@@ -1,0 +1,46 @@
+<div class="auth-container">
+
+  <div class="auth-card">
+
+    <h1>LazHoppee</h1>
+    <p>Create your account</p>
+
+    <input
+      type="text"
+      placeholder="Full Name"
+      [(ngModel)]="fullname">
+
+    <input
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="email">
+
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password">
+
+    <select [(ngModel)]="role">
+
+    <option value="customer">
+        Customer
+    </option>
+
+    <option value="seller">
+        Seller
+    </option>
+
+</select>
+
+    <button (click)="register()">
+      Register
+    </button>
+
+    <div class="link">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </div>
+
+  </div>
+
+</div>

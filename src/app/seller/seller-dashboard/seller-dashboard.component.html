@@ -1,0 +1,54 @@
+<div class="dashboard">
+
+    <h1>Seller Dashboard</h1>
+
+    <p class="welcome">
+
+        Welcome,
+        <strong>{{ fullname }}</strong>
+
+    </p>
+
+    <div class="card">
+
+        <h2>🏪 My Store</h2>
+
+        <div *ngIf="store; else noStore">
+
+            <p>
+
+                <strong>Name:</strong>
+
+                {{ store.storeName }}
+
+            </p>
+
+            <p>
+
+                <strong>Status:</strong>
+
+                {{ store.status }}
+
+            </p>
+
+        </div>
+
+        <ng-template #noStore>
+
+            <p>
+
+                You don't have a store yet.
+
+            </p>
+
+            <button routerLink="/seller/create-store">
+
+                Create Store
+
+            </button>
+
+        </ng-template>
+
+    </div>
+
+</div>

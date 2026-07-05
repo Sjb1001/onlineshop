@@ -1,0 +1,36 @@
+.container{
+
+    width:90%;
+    margin:30px auto;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th,td{
+
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+
+}
+
+th{
+
+    background:#6a1b9a;
+    color:white;
+
+}
+
+button{
+
+    margin:3px;
+    padding:8px 15px;
+    cursor:pointer;
+
+}

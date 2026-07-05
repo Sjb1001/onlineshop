@@ -1,29 +1,29 @@
 <div class="container">
+
   <h2>🔥 Just For You</h2>
 
   <div class="grid">
-    <mat-card
-      *ngFor="let product of products"
-      class="product-card"
-      appearance="outlined"
-    >
+
+    <div class="product-card" *ngFor="let product of products">
+
       <img
-        mat-card-image
-        [src]="'assets/images/' + product.imageUrl"
+        [src]="product.image"
         [alt]="product.name"
-      />
+        class="product-image"
+      >
 
-      <mat-card-content>
-        <mat-card-title>
-          {{ product.name }}
-        </mat-card-title>
-        <p>{{ product.imageUrl }}</p>
-        <mat-card-subtitle> ₱{{ product.price }} </mat-card-subtitle>
-      </mat-card-content>
+      <h3>{{ product.name }}</h3>
 
-      <button mat-raised-button color="primary" (click)="addToCart(product)">
+      <p>{{ product.description }}</p>
+
+      <h4>₱{{ product.price }}</h4>
+
+      <button (click)="addToCart(product)">
         Add to Cart
       </button>
-    </mat-card>
+
+    </div>
+
   </div>
+
 </div>
