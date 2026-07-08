@@ -24,6 +24,13 @@ const storeSchema = new mongoose.Schema({
     latitude: Number,
     longitude: Number,
 
+    allowedCategories: [
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
+    }
+],
+
     status: {
         type: String,
         default: "pending"

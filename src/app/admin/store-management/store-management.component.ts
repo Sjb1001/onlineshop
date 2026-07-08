@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/seller/store.service';
+import { CategoryService } from '../category/category.service';
 
 @Component({
   selector: 'app-store-management',
@@ -9,11 +10,23 @@ import { StoreService } from 'src/app/seller/store.service';
 export class StoreManagementComponent implements OnInit {
 
   stores: any[] = [];
+  categories: any[] = [];
 
-  constructor(private storeService: StoreService) {}
+  constructor(private storeService: StoreService,
+              private categoryService: CategoryService
+  ) {}
 
   ngOnInit(): void {
     this.loadStores();
+    this.categoryService.getCategories().subscribe({
+      next: (data: any) => {
+        this.categories = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+
   }
 
   loadStores() {
@@ -45,4 +58,23 @@ export class StoreManagementComponent implements OnInit {
     });
   }
 
+  saveCategories(store: any) {
+    this.storeService.assignCategories(
+    store._id,
+    store.allowedCategories
+  ).subscribe({
+
+    next: () => {
+
+      alert("Categories Assigned!");
+
+      this.loadStores();
+
+    }
+
+  });
+
 }
+
+}
+

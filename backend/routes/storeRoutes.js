@@ -47,7 +47,8 @@ router.get("/", async (req, res) => {
     try {
 
         const stores = await Store.find()
-            .populate("owner", "fullname email");
+            .populate("owner", "fullname email")
+            .populate("allowedCategories", "name");
 
         res.json(stores);
 
@@ -86,33 +87,6 @@ router.put("/:id/approve", async (req, res) => {
 
 });
 
-// =========================
-// Reject Store
-// =========================
-router.post("/", async (req, res) => {
-
-    console.log("BODY RECEIVED:");
-    console.log(req.body);
-
-    try {
-
-        const store = new Store(req.body);
-
-        await store.save();
-
-        res.json(store);
-
-    } catch (err) {
-
-        console.log(err);
-
-        res.status(500).json({
-            message: err.message
-        });
-
-    }
-
-});
 
 // =========================
 // Get Store by Owner
@@ -123,7 +97,10 @@ router.get("/owner/:ownerId", async (req, res) => {
 
         const store = await Store.findOne({
             owner: req.params.ownerId
-        });
+        })
+        .populate("allowedCategories", "name");
+
+console.log("STORE SENT:", store);
 
         res.json(store);
 
@@ -136,5 +113,59 @@ router.get("/owner/:ownerId", async (req, res) => {
     }
 
 });
+
+// =========================
+// Assign Categories to Store
+// =========================
+router.put("/:id/categories", async (req, res) => {
+
+    try {
+
+        const store = await Store.findByIdAndUpdate(
+            req.params.id,
+            {
+                allowedCategories: req.body.allowedCategories
+            },
+            {
+                new: true
+            }
+        );
+
+        res.json(store);
+
+    } catch (err) {
+
+        res.status(500).json({
+            message: err.message
+        });
+
+    }
+
+});
+
+// =========================
+// Get Single Store
+// =========================
+router.get("/:id", async (req, res) => {
+
+    try {
+
+        const store = await Store.findById(req.params.id)
+            .populate("owner", "fullname email")
+            .populate("allowedCategories");
+
+        res.json(store);
+
+    } catch (err) {
+
+        res.status(500).json({
+            message: err.message
+        });
+
+    }
+
+});
+
+
 
 module.exports = router;

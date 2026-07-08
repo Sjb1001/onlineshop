@@ -31,4 +31,15 @@ rejectStore(id: string) {
   return this.http.get(this.apiUrl + "/owner/" + ownerId);
 }
 
+assignCategories(storeId: string, allowedCategories: string[]) {
+  return this.http.put(
+    this.apiUrl + "/" + storeId + "/categories",
+    { allowedCategories }
+  );
+}
+
+getStore(id: string) {
+  return this.http.get(this.apiUrl + "/" + id);
+}
+
 }

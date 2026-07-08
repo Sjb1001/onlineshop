@@ -1,0 +1,82 @@
+<div class="container" *ngIf="store">
+
+    <h1>Add Product</h1>
+
+    <hr>
+
+    <p>
+        <strong>Store:</strong>
+        {{ store.storeName }}
+    </p>
+
+    <br>
+
+    <div class="form-group">
+
+        <label>Product Name</label>
+
+        <input
+            type="text"
+            [(ngModel)]="product.productName">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Description</label>
+
+        <textarea
+            rows="4"
+            [(ngModel)]="product.description"></textarea>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Category</label>
+
+        <select [(ngModel)]="product.category">
+
+            <option value="">Select Category</option>
+
+            <option
+                *ngFor="let category of categories"
+                [value]="category._id">
+
+                {{ category.name }}
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Price</label>
+
+        <input
+            type="number"
+            [(ngModel)]="product.price">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Stock</label>
+
+        <input
+            type="number"
+            [(ngModel)]="product.stock">
+
+    </div>
+
+    <br>
+
+    <button (click)="saveProduct()">
+
+        Save Product
+
+    </button>
+
+</div>

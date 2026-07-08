@@ -12,10 +12,19 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { CategoryComponent } from './admin/category/category.component';
 import { CreateStoreComponent } from './seller/create-store/create-store.component';
 import { StoreManagementComponent } from './admin/store-management/store-management.component';
+import { ManageStoreCategoryComponent } from './admin/manage-store-category/manage-store-category.component';
+import { SellerManagementComponent } from './admin/seller-management/seller-management.component';
+import { AddProductComponent } from './seller/add-product/add-product.component';
+import { MyProductsComponent } from './seller/my-products/my-products.component';
+import { EditProductComponent } from './seller/edit-product/edit-product.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-
+  {
+    path: 'admin/store/:id/categories',
+    component: ManageStoreCategoryComponent
+},
   { path: 'home', component: HomeComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'product/:id', component: ProductDetailComponent },
@@ -30,7 +39,24 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'admin/category', component: CategoryComponent },
-  {path: 'seller/create-store',component: CreateStoreComponent}
+  {path: 'seller/create-store',component: CreateStoreComponent},
+  {
+    path: 'admin/sellers',
+    component: SellerManagementComponent
+},
+{
+  path: 'seller/add-product',
+  component: AddProductComponent
+},
+{
+  path: 'seller/my-products',
+  component: MyProductsComponent
+},
+
+{
+  path: 'seller/edit-product/:id',
+  component: EditProductComponent
+},
 ];
 
 @NgModule({

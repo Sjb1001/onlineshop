@@ -1,0 +1,61 @@
+<div class="container">
+
+    <h1>My Products</h1>
+
+    <hr>
+
+    <table *ngIf="products.length > 0">
+
+        <thead>
+
+            <tr>
+
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let product of products">
+
+                <td>{{ product.productName }}</td>
+
+                <td>{{ product.category?.name }}</td>
+
+                <td>₱{{ product.price }}</td>
+
+                <td>{{ product.stock }}</td>
+
+                <td>
+
+                    <button [routerLink]="['/seller/edit-product', product._id]">
+    Edit
+</button>
+
+                    <button
+    class="delete-btn"
+    (click)="deleteProduct(product._id)">
+    Delete
+</button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <div *ngIf="products.length == 0">
+
+        <p>No products found.</p>
+
+    </div>
+
+</div>

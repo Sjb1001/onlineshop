@@ -20,6 +20,12 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { CategoryComponent } from './admin/category/category.component';
 import { CreateStoreComponent } from './seller/create-store/create-store.component';
 import { StoreManagementComponent } from './admin/store-management/store-management.component';
+import { ManageStoreCategoryComponent } from './admin/manage-store-category/manage-store-category.component';
+import { SellerManagementComponent } from './admin/seller-management/seller-management.component';
+import { AddProductComponent } from './seller/add-product/add-product.component';
+import { MyProductsComponent } from './seller/my-products/my-products.component';
+import { EditProductComponent } from './seller/edit-product/edit-product.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,12 @@ import { StoreManagementComponent } from './admin/store-management/store-managem
     AdminDashboardComponent,
     CategoryComponent,
     CreateStoreComponent,
-    StoreManagementComponent
+    StoreManagementComponent,
+    ManageStoreCategoryComponent,
+    SellerManagementComponent,
+    AddProductComponent,
+    MyProductsComponent,
+    EditProductComponent
 
   ],
   imports: [
@@ -44,7 +55,8 @@ import { StoreManagementComponent } from './admin/store-management/store-managem
     CartModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

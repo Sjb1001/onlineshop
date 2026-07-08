@@ -3,10 +3,8 @@
     <h1>Seller Dashboard</h1>
 
     <p class="welcome">
-
         Welcome,
         <strong>{{ fullname }}</strong>
-
     </p>
 
     <div class="card">
@@ -15,30 +13,41 @@
 
         <div *ngIf="store; else noStore">
 
-            <p>
 
+            <p>
                 <strong>Name:</strong>
-
                 {{ store.storeName }}
-
             </p>
 
             <p>
-
                 <strong>Status:</strong>
-
                 {{ store.status }}
-
             </p>
+
+            <br>
+
+            <button
+                routerLink="/seller/add-product"
+                *ngIf="store.status === 'approved'">
+
+                ➕ Add Product
+
+            </button>
+
+            <button
+                routerLink="/seller/my-products"
+                *ngIf="store.status === 'approved'">
+
+                📦 My Products
+
+            </button>
 
         </div>
 
         <ng-template #noStore>
 
             <p>
-
                 You don't have a store yet.
-
             </p>
 
             <button routerLink="/seller/create-store">

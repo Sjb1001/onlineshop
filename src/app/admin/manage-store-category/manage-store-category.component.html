@@ -1,0 +1,56 @@
+<div class="container" *ngIf="store">
+
+    <h1>Manage Store Categories</h1>
+
+    <hr>
+
+    <div class="store-info">
+
+        <p><strong>Store Name:</strong> {{ store.storeName }}</p>
+
+        <p><strong>Owner:</strong> {{ store.owner.fullname }}</p>
+
+        <p>
+            <strong>Status:</strong>
+
+            <span
+                [style.color]="store.status === 'approved' ? 'green' : 'orange'">
+
+                {{ store.status }}
+
+            </span>
+
+        </p>
+
+    </div>
+
+    <hr>
+
+    <h3>Allowed Categories</h3>
+
+    <div class="categories">
+
+        <div *ngFor="let category of categories" class="category-item">
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    [checked]="isChecked(category._id)"
+                    (change)="toggleCategory(category._id, $any($event.target).checked)">
+
+                {{ category.name }}
+
+            </label>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <button (click)="save()">
+        Save Categories
+    </button>
+
+</div>  

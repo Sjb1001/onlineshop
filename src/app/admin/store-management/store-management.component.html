@@ -27,17 +27,25 @@
 
                 <td>
 
-                    <button
-                        *ngIf="store.status=='pending'"
-                        (click)="approve(store._id)">
-                        Approve
-                    </button>
+                     <button
+        *ngIf="store.status=='pending'"
+        (click)="approve(store._id)">
+        Approve
+    </button>
 
-                    <button
-                        *ngIf="store.status=='pending'"
-                        (click)="reject(store._id)">
-                        Reject
-                    </button>
+    <button
+        *ngIf="store.status=='pending'"
+        (click)="reject(store._id)">
+        Reject
+    </button>
+
+    <button
+        *ngIf="store.status=='approved'"
+        [routerLink]="['/admin/store', store._id, 'categories']">
+
+        Manage Categories
+
+    </button>
 
                     <span *ngIf="store.status!='pending'">
 
