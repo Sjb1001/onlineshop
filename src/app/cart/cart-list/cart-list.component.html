@@ -4,21 +4,76 @@
   <mat-card class="cart-card">
     <!-- <mat-list class="cart-list"> -->
       <div *ngFor="let item of cartItems">
-        <div class="cart-item-content">
-          <img
-            class="cart-item-img"
-            [src]="'/assets/images/' + item.image"
-            [alt]="item.name"
-          />
-          <div>
-            <p matListItemTitle class="item-name">{{ item.name }}</p>
-            <p matListItemLine class="item-price">
-              {{ item.price | currency: "PHP" }}
-            </p>
-          </div>
 
-        </div>
+  <div class="cart-item-content">
+
+    <img
+      class="cart-item-img"
+      [src]="item.product?.image ? 'http://localhost:3000' + item.product.image : '/assets/images/no-image.png'"
+      [alt]="item.product?.productName || 'Product'"
+    />
+
+    <div class="cart-info">
+
+      <p class="item-name">
+        {{ item.product?.productName }}
+      </p>
+
+      <p class="item-price">
+        {{ item.product?.price | currency:'PHP' }}
+      </p>
+
+      <div class="quantity-controls">
+
+        <button
+          mat-mini-fab
+          color="primary"
+          (click)="decreaseQuantity(item)">
+
+          -
+
+        </button>
+
+        <span class="qty">
+
+          {{ item.quantity }}
+
+        </span>
+
+        <button
+          mat-mini-fab
+          color="primary"
+          (click)="increaseQuantity(item)">
+
+          +
+
+        </button>
+
       </div>
+
+      <p class="subtotal">
+
+        Subtotal:
+        {{ item.product.price * item.quantity | currency:'PHP' }}
+
+      </p>
+
+      <button
+        mat-button
+        color="warn"
+        (click)="removeItem(item)">
+
+        Remove
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <mat-divider></mat-divider>
+
+</div>
     <!-- </mat-list> -->
 
     <mat-divider></mat-divider>

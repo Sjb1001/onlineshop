@@ -14,6 +14,8 @@ export class EditProductComponent implements OnInit {
 
   categories: any[] = [];
 
+  selectedFile!: File;
+
   productId = "";
 
   product = {
@@ -21,7 +23,8 @@ export class EditProductComponent implements OnInit {
     description: '',
     price: 0,
     stock: 0,
-    category: ''
+    category: '',
+    image: ''
   };
 
   constructor(
@@ -55,25 +58,43 @@ export class EditProductComponent implements OnInit {
         description: data.description,
         price: data.price,
         stock: data.stock,
-        category: data.category._id
+        category: data.category._id,
+        image: data.image || ''
       };
 
     });
 
   }
 
+onFileSelected(event: any) {
+
+  if (event.target.files.length > 0) {
+
+    this.selectedFile = event.target.files[0];
+
+  }
+
+}
+
   updateProduct() {
 
-  const data = {
-    ...this.product,
-    store: this.store._id
-  };
+  const formData = new FormData();
 
-  console.log("Product ID:", this.productId);
-  console.log("Updating with:", data);
+  formData.append("productName", this.product.productName);
+  formData.append("description", this.product.description);
+  formData.append("category", this.product.category);
+  formData.append("price", this.product.price.toString());
+  formData.append("stock", this.product.stock.toString());
+  formData.append("store", this.store._id);
+
+  if (this.selectedFile) {
+
+    formData.append("image", this.selectedFile);
+
+  }
 
   this.productService
-    .updateProduct(this.productId, data)
+    .updateProduct(this.productId, formData)
     .subscribe({
 
       next: (res: any) => {
@@ -81,6 +102,8 @@ export class EditProductComponent implements OnInit {
         console.log("UPDATE RESPONSE:", res);
 
         alert("Product Updated!");
+
+        this.router.navigate(['/seller/my-products']);
 
       },
 

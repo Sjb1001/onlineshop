@@ -28,6 +28,8 @@ export class SellerDashboardComponent implements OnInit {
 
             this.store = data;
 
+            console.log(this.store);
+
           },
 
           error: (err) => {

@@ -7,17 +7,22 @@
 
   const productRoutes = require("./routes/productRoutes");
   const storeRoutes = require("./routes/storeRoutes");
+  const orderRoutes = require("./routes/orderRoutes");
+  const cartRoutes = require("./routes/cartRoutes");
 
   const app = express();
 
   app.use(cors());
   app.use(express.json());
+  app.use("/uploads", express.static("uploads"));
 
   // Routes
   app.use("/api/products", productRoutes);
   app.use("/api/auth", authRoutes);
   app.use("/api/categories", categoryRoutes);
   app.use("/api/stores", storeRoutes);
+  app.use("/api/orders", orderRoutes);
+  app.use("/api/cart", cartRoutes);
 
   console.log("Category routes loaded");
 

@@ -71,6 +71,23 @@
 
     </div>
 
+    <div class="form-group">
+
+    <label>Product Image</label>
+
+    <input
+        type="file"
+        (change)="onFileSelected($event)">
+
+    <br><br>
+
+    <img
+        *ngIf="product.image"
+        [src]="'http://localhost:3000' + product.image"
+        width="150">
+
+</div>
+
     <br>
 
     <button (click)="updateProduct()">

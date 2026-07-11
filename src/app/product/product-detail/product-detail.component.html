@@ -1,30 +1,45 @@
-<div class="product-detail-container">
+<div class="container" *ngIf="product">
 
-  <div class="product-image">
-    <img src="assets/images/Product_01.jpg" alt="Helmet">
+  <div class="left">
+
+    <img
+      [src]="product.image ? 'http://localhost:3000' + product.image : 'assets/no-image.png'"
+      [alt]="product.productName">
+
   </div>
 
-  <div class="product-info">
+  <div class="right">
 
-    <h1>LS2 Full Face Helmet</h1>
+    <h1>{{ product.productName }}</h1>
 
-    <h2>₱4,500</h2>
+    <h2>₱{{ product.price }}</h2>
 
     <p>
-      Premium motorcycle helmet designed for safety,
-      comfort, and style. Features durable shell
-      construction, superior ventilation, and a clear visor.
+      <strong>Category:</strong>
+      {{ product.category?.name }}
     </p>
 
-    <div class="buttons">
-      <button class="cart-btn">
-        Add to Cart
-      </button>
+    <p>
+      <strong>Store:</strong>
+      {{ product.store?.storeName }}
+    </p>
 
-      <button class="buy-btn" (click)="buyNow()">
-        Buy Now
-      </button>
-    </div>
+    <p>
+      <strong>Stock:</strong>
+      {{ product.stock }}
+    </p>
+
+    <hr>
+
+    <h3>Description</h3>
+
+    <p>{{ product.description }}</p>
+
+    <br>
+
+    <button (click)="addToCart()">
+      Add to Cart
+    </button>
 
   </div>
 

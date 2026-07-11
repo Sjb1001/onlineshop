@@ -4,6 +4,7 @@
   const router = express.Router();
 
   const Product = require("../models/Product");
+  const upload = require("../config/multer");
 
   // ==========================
   // Get All Products
@@ -56,11 +57,29 @@
   // ==========================
   // Create Product
   // ==========================
-  router.post("/", async (req, res) => {
+  router.post("/", upload.single("image"), async (req, res) => {
 
       try {
 
-          const product = new Product(req.body);
+          const product = new Product({
+
+              store: req.body.store,
+
+              category: req.body.category,
+
+              productName: req.body.productName,
+
+              description: req.body.description,
+
+              price: req.body.price,
+
+              stock: req.body.stock,
+
+              image: req.file
+                  ? "/uploads/" + req.file.filename
+                  : ""
+
+          });
 
           await product.save();
 
@@ -75,7 +94,6 @@
       }
 
   });
-
   // ==========================
 // Get Single Product
 // ==========================
@@ -102,17 +120,43 @@ router.get("/:id", async (req, res) => {
 // ==========================
 // Update Product
 // ==========================
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single("image"), async (req, res) => {
 
     try {
 
-        const product = await Product.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        );
+        const updateData = {
 
-        res.json(product);
+    productName: req.body.productName,
+
+    description: req.body.description,
+
+    category: req.body.category,
+
+    price: req.body.price,
+
+    stock: req.body.stock,
+
+    store: req.body.store
+
+};
+
+if (req.file) {
+
+    updateData.image = "/uploads/" + req.file.filename;
+
+}
+
+const product = await Product.findByIdAndUpdate(
+
+    req.params.id,
+
+    updateData,
+
+    { new: true }
+
+);
+
+res.json(product);
 
     } catch (err) {
 
@@ -145,6 +189,6 @@ router.delete("/:id", async (req, res) => {
 
     }
 
-}); 
+});
 
   module.exports = router;

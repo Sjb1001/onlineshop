@@ -52,3 +52,57 @@
     flex-direction: column-reverse;
   }
 }
+
+.quantity-controls{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-top:10px;
+
+    margin-bottom:10px;
+
+}
+
+.qty{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    width:30px;
+
+    text-align:center;
+
+}
+
+.subtotal{
+
+    margin-top:10px;
+
+    font-weight:bold;
+
+    color:#ee4d2d;
+
+}
+
+.cart-info{
+
+    flex:1;
+
+}
+
+.cart-item-content{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+    margin:20px 0;
+
+}

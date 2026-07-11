@@ -11,7 +11,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import { CartModule } from './cart/cart.module';
 import { HomeComponent } from './home/home.component';
-import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutComponent } from './customer/checkout/checkout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +26,7 @@ import { AddProductComponent } from './seller/add-product/add-product.component'
 import { MyProductsComponent } from './seller/my-products/my-products.component';
 import { EditProductComponent } from './seller/edit-product/edit-product.component';
 import { RouterModule } from '@angular/router';
+import { ProductDetailsComponent } from './customer/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RouterModule } from '@angular/router';
     SellerManagementComponent,
     AddProductComponent,
     MyProductsComponent,
-    EditProductComponent
+    EditProductComponent,
+    ProductDetailsComponent
 
   ],
   imports: [

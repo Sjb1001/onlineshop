@@ -1,29 +1,39 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-   private apiCartUrl = environment.apiUrl + "/cart"
-   private apiCheckoutUrl = environment.apiUrl + "/checkout"
+  apiUrl = environment.apiUrl + "/cart";
 
-    constructor(private http: HttpClient) { }
-    addtoCart(product: Product): Observable<Product> {
-      return this.http.post<Product>(this.apiCartUrl, product);
-    }
+  constructor(private http: HttpClient) { }
 
-    getCartItems(): Observable<Product[]>{
-      return this.http.get<Product[]>(this.apiCartUrl);
-    }
-    clearCart(): Observable<void>{
-      return this.http.delete<void>(this.apiCartUrl);
-    }
-    checkout(products: Product[]): Observable<void>{
-      return this.http.post<void>(this.apiCheckoutUrl, products);
-    }
+  addtoCart(cartItem: any) {
+  return this.http.post(this.apiUrl, cartItem);
+}
+
+  getCartItems(customerId: string) {
+  return this.http.get(this.apiUrl + "/" + customerId);
+}
+
+  increaseQuantity(id: string) {
+  return this.http.put(this.apiUrl + "/" + id + "/increase", {});
+}
+
+  decreaseQuantity(id: string) {
+  return this.http.put(this.apiUrl + "/" + id + "/decrease", {});
+}
+
+  removeFromCart(id: string) {
+    return this.http.delete(this.apiUrl + "/" + id);
+  }
+
+  clearCart() {
+    const customerId = localStorage.getItem('userId');
+    return this.http.delete(`${this.apiUrl}/customer/${customerId}`);
+  }
+
 }

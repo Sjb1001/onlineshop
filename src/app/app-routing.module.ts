@@ -4,7 +4,6 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { CartListComponent } from './cart/cart-list/cart-list.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SellerDashboardComponent } from './seller/seller-dashboard/seller-dashboard.component';
@@ -17,6 +16,8 @@ import { SellerManagementComponent } from './admin/seller-management/seller-mana
 import { AddProductComponent } from './seller/add-product/add-product.component';
 import { MyProductsComponent } from './seller/my-products/my-products.component';
 import { EditProductComponent } from './seller/edit-product/edit-product.component';
+import { ProductDetailsComponent } from './customer/product-details/product-details.component';
+import { CheckoutComponent } from './customer/checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,6 @@ const routes: Routes = [
   { path: 'products', component: ProductListComponent },
   { path: 'product/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartListComponent },
-  { path: 'checkout', component: CheckoutComponent },
     // Seller
   { path: 'seller', component: SellerDashboardComponent },
   // Admin
@@ -56,6 +56,16 @@ const routes: Routes = [
 {
   path: 'seller/edit-product/:id',
   component: EditProductComponent
+},
+
+{
+  path: 'product/:id',
+  component: ProductDetailsComponent
+},
+
+{
+  path: 'checkout',
+  component: CheckoutComponent
 },
 ];
 

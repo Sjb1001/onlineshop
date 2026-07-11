@@ -24,6 +24,30 @@
                 {{ store.status }}
             </p>
 
+            <hr>
+
+<h3>Allowed Categories</h3>
+
+<div *ngIf="store.allowedCategories?.length > 0; else noCategories">
+
+    <ul>
+
+        <li *ngFor="let category of store.allowedCategories">
+
+            {{ category.name }}
+
+        </li>
+
+    </ul>
+
+</div>
+
+<ng-template #noCategories>
+
+    <p>No categories have been assigned yet.</p>
+
+</ng-template>
+
             <br>
 
             <button

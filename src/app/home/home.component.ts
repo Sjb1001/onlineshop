@@ -17,9 +17,17 @@ export class HomeComponent implements OnInit {
   }
 
   loadCartCount(): void {
-    this.cartService.getCartItems().subscribe(items => {
-      this.cartCount = items.length;
-    });
+    const customerId = localStorage.getItem("userId");
+
+if (customerId) {
+
+  this.cartService.getCartItems(customerId).subscribe((items: any) => {
+
+    this.cartCount = items.length;
+
+  });
+
+}
   }
 
 }
