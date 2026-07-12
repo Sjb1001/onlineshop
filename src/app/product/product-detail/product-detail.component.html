@@ -41,6 +41,44 @@
       Add to Cart
     </button>
 
+    <hr>
+
+<h2>Customer Reviews</h2>
+
+<p *ngIf="reviews.length > 0">
+
+  ⭐ Average Rating:
+
+  {{ averageRating | number:'1.1-1' }}/5
+
+</p>
+
+<div *ngIf="reviews.length === 0">
+
+  <p>No reviews yet.</p>
+
+</div>
+
+<div *ngFor="let review of reviews" class="review-card">
+
+  <h4>{{ review.customer.fullname }}</h4>
+
+  <p>
+
+    ⭐ {{ review.rating }}/5
+
+  </p>
+
+  <p>
+
+    {{ review.comment }}
+
+  </p>
+
+  <hr>
+
+</div>
+
   </div>
 
 </div>

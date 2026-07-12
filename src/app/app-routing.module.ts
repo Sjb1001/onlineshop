@@ -16,8 +16,10 @@ import { SellerManagementComponent } from './admin/seller-management/seller-mana
 import { AddProductComponent } from './seller/add-product/add-product.component';
 import { MyProductsComponent } from './seller/my-products/my-products.component';
 import { EditProductComponent } from './seller/edit-product/edit-product.component';
-import { ProductDetailsComponent } from './customer/product-details/product-details.component';
 import { CheckoutComponent } from './customer/checkout/checkout.component';
+import { MyOrdersComponent } from './customer/my-orders/my-orders.component';
+import { SellerOrdersComponent } from './seller/seller-orders/seller-orders.component';
+import { ReviewComponent } from './customer/review/review.component';
 
 
 const routes: Routes = [
@@ -59,14 +61,25 @@ const routes: Routes = [
 },
 
 {
-  path: 'product/:id',
-  component: ProductDetailsComponent
-},
-
-{
   path: 'checkout',
   component: CheckoutComponent
 },
+
+{
+    path: 'my-orders',
+    component: MyOrdersComponent
+},
+
+{
+  path: 'seller/orders',
+  component: SellerOrdersComponent
+},
+
+{
+  path: 'customer/review',
+  component: ReviewComponent
+}
+
 ];
 
 @NgModule({

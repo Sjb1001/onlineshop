@@ -16,8 +16,8 @@ export class CartService {
 }
 
   getCartItems(customerId: string) {
-  return this.http.get(this.apiUrl + "/" + customerId);
-}
+    return this.http.get(`${this.apiUrl}/customer/${customerId}`);
+  }
 
   increaseQuantity(id: string) {
   return this.http.put(this.apiUrl + "/" + id + "/increase", {});

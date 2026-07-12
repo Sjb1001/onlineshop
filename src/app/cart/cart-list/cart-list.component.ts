@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Product } from 'src/app/models/product';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -11,7 +12,7 @@ export class CartListComponent implements OnInit {
   cartItems: any[] = [];
   totalPrice = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private orderService: OrderService) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -31,7 +32,7 @@ export class CartListComponent implements OnInit {
 
   });
 
-} 
+}
 
   getTotalPrice(): number {
 
@@ -73,7 +74,7 @@ export class CartListComponent implements OnInit {
 
     },
 
-    error: (err) => {
+    error: (err: any) => {
 
       console.log(err);
 
@@ -93,7 +94,7 @@ decreaseQuantity(item: any) {
 
     },
 
-    error: (err) => {
+    error: (err: any) => {
 
       console.log(err);
 
@@ -124,6 +125,39 @@ removeItem(item: any) {
 }
 
   checkout(): void {
-    this.clearCart();
+
+  const customerId = localStorage.getItem("userId");
+
+  if (!customerId) {
+
+    alert("Please login first.");
+
+    return;
+
   }
+
+  this.orderService.checkout(customerId).subscribe({
+
+    next: () => {
+
+      alert("Order placed successfully!");
+
+      this.loadCart();
+
+    },
+
+    error: (err) => {
+
+  console.log("CHECKOUT ERROR:", err);
+
+  console.log("Response:", err.error);
+
+  alert("Checkout failed.");
+
+}
+
+  });
+
+}
+
 }

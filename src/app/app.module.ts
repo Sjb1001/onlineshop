@@ -26,7 +26,7 @@ import { AddProductComponent } from './seller/add-product/add-product.component'
 import { MyProductsComponent } from './seller/my-products/my-products.component';
 import { EditProductComponent } from './seller/edit-product/edit-product.component';
 import { RouterModule } from '@angular/router';
-import { ProductDetailsComponent } from './customer/product-details/product-details.component';
+import { ReviewComponent } from './customer/review/review.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { ProductDetailsComponent } from './customer/product-details/product-deta
     AddProductComponent,
     MyProductsComponent,
     EditProductComponent,
-    ProductDetailsComponent
+
 
   ],
   imports: [
@@ -58,7 +58,8 @@ import { ProductDetailsComponent } from './customer/product-details/product-deta
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    ReviewComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

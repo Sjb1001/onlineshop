@@ -30,6 +30,23 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.get("/:customerId", async (req, res) => {
+    try {
+        const cart = await Cart.find({ customer: req.params.customerId })
+            .populate({
+                path: "product",
+                populate: [
+                    { path: "store", select: "storeName" },
+                    { path: "category", select: "name" }
+                ]
+            });
+
+        res.json(cart);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 router.get("/customer/:customerId", async (req, res) => {
     try {
         const cart = await Cart.find({ customer: req.params.customerId })

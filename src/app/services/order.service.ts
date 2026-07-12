@@ -23,4 +23,24 @@ export class OrderService {
     return this.http.get(this.apiUrl + "/store/" + storeId);
   }
 
+  updateOrderStatus(orderId: string, status: string) {
+
+  return this.http.put(this.apiUrl + "/" + orderId + "/status", {
+
+    status
+
+  });
+
+}
+
+  checkout(customer: string) {
+
+  return this.http.post(this.apiUrl + "/checkout", {
+
+    customer
+
+  });
+
+}
+
 }

@@ -1,0 +1,68 @@
+<h1 style="color:red">SELLER ORDERS COMPONENT LOADED</h1>
+
+<p>Total Orders: {{ orders.length }}</p>
+
+<div class="container">
+
+    <h2>Store Orders</h2>
+
+    <div *ngFor="let order of orders" class="order-card">
+
+        <h3>Customer: {{ order.customer.fullname }}</h3>
+
+        <div class="status-section">
+
+    <label><strong>Status</strong></label>
+
+    <select [(ngModel)]="order.status">
+
+        <option value="Pending">Pending</option>
+
+        <option value="Preparing">Preparing</option>
+
+        <option value="Ready for Pickup">Ready for Pickup</option>
+
+        <option value="Shipped">Shipped</option>
+
+        <option value="Delivered">Delivered</option>
+
+    </select>
+
+    <button
+        mat-raised-button
+        color="primary"
+        (click)="updateStatus(order)">
+
+        Update Status
+
+    </button>
+
+</div>
+
+        <p>
+            <strong>Total:</strong>
+            ₱{{ order.total }}
+        </p>
+
+        <hr>
+
+        <div *ngFor="let item of order.items">
+
+            <img
+                [src]="item.product.image ? 'http://localhost:3000' + item.product.image : 'assets/images/no-image.png'"
+                width="80"
+            >
+
+            <p>{{ item.product.productName }}</p>
+
+            <p>Quantity: {{ item.quantity }}</p>
+
+            <p>₱{{ item.price }}</p>
+
+            <br>
+
+        </div>
+
+    </div>
+
+</div>

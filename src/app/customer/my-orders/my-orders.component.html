@@ -1,0 +1,57 @@
+<div class="container">
+
+    <h2>My Orders</h2>
+
+    <div *ngIf="orders.length === 0">
+
+        <h3>No orders yet.</h3>
+
+    </div>
+
+    <div class="order-card" *ngFor="let order of orders">
+
+        <h3>Order</h3>
+
+        <p>
+            <strong>Status:</strong>
+            {{ order.status }}
+        </p>
+
+        <p>
+            <strong>Total:</strong>
+            ₱{{ order.total }}
+        </p>
+
+        <p>
+            <strong>Date:</strong>
+            {{ order.createdAt | date:'medium' }}
+        </p>
+
+        <hr>
+
+        <div *ngFor="let item of order.items">
+
+            <img
+                [src]="item.product.image ? 'http://localhost:3000' + item.product.image : 'assets/images/no-image.png'"
+                width="80"
+            >
+
+            <p>{{ item.product.productName }}</p>
+
+            <p>Quantity: {{ item.quantity }}</p>
+
+            <p>₱{{ item.price }}</p>
+
+            <button
+                *ngIf="order.status === 'Delivered'"
+                (click)="writeReview(item.product)">
+                ⭐ Write Review
+            </button>
+
+            <br><br>
+
+        </div>
+
+    </div>
+
+</div>
