@@ -158,4 +158,63 @@ router.get("/store/:storeId/customer/:customerId", async (req, res) => {
 
 });
 
+// Customer Inbox
+router.get("/customer/:customerId/inbox", async (req, res) => {
+
+    try {
+
+        const messages = await Message.find({
+
+            customer: req.params.customerId
+
+        })
+        .populate("store", "storeName")
+        .sort({
+
+            createdAt: -1
+
+        });
+
+        const conversations = [];
+
+        const stores = new Set();
+
+        for (const message of messages) {
+
+            if (!message.store) continue;
+
+            const storeId = message.store._id.toString();
+
+            if (!stores.has(storeId)) {
+
+                stores.add(storeId);
+
+                conversations.push({
+
+                    store: message.store,
+
+                    lastMessage: message.message,
+
+                    createdAt: message.createdAt
+
+                });
+
+            }
+
+        }
+
+        res.json(conversations);
+
+    } catch (err) {
+
+        res.status(500).json({
+
+            message: err.message
+
+        });
+
+    }
+
+});
+
 module.exports = router;

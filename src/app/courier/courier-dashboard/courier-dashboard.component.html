@@ -1,0 +1,49 @@
+<div class="container">
+
+<h2>🚚 Available Deliveries</h2>
+
+<div class="card" *ngFor="let order of availableOrders">
+
+    <h3>{{ order.store.storeName }}</h3>
+
+    <p>{{ order.customer.fullname }}</p>
+
+    <button (click)="accept(order)">
+
+        Accept Delivery
+
+    </button>
+
+</div>
+
+<hr>
+
+<h2>📦 My Deliveries</h2>
+
+<div class="card" *ngFor="let order of myOrders">
+
+    <h3>{{ order.store.storeName }}</h3>
+
+    <p>{{ order.customer.fullname }}</p>
+
+    <p>Status: {{ order.status }}</p>
+
+    <button
+        *ngIf="order.status=='Picked Up'"
+        (click)="updateStatus(order,'In Transit')">
+
+        Mark In Transit
+
+    </button>
+
+    <button
+        *ngIf="order.status=='In Transit'"
+        (click)="updateStatus(order,'Delivered')">
+
+        Mark Delivered
+
+    </button>
+
+</div>
+
+</div>

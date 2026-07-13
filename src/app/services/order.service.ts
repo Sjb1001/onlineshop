@@ -54,4 +54,56 @@ cancelOrder(orderId: string) {
 
 }
 
+getAvailableDeliveries() {
+
+  return this.http.get(
+
+    this.apiUrl + "/available"
+
+  );
+
+}
+
+acceptDelivery(orderId: string, courierId: string) {
+
+  return this.http.put(
+
+    this.apiUrl + "/" + orderId + "/accept",
+
+    {
+
+      courierId
+
+    }
+
+  );
+
+}
+
+getCourierDeliveries(courierId: string) {
+
+  return this.http.get(
+
+    this.apiUrl + "/courier/" + courierId
+
+  );
+
+}
+
+updateDeliveryStatus(orderId: string, status: string) {
+
+  return this.http.put(
+
+    this.apiUrl + "/" + orderId + "/delivery-status",
+
+    {
+
+      status
+
+    }
+
+  );
+
+}
+
 }

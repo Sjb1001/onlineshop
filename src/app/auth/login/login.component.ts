@@ -36,12 +36,22 @@ export class LoginComponent {
   alert("Login Successful!");
 
   if (res.role === "customer") {
-    this.router.navigate(['/home']);
-  } else if (res.role === "seller") {
-    this.router.navigate(['/seller']);
-  } else if (res.role === "admin") {
-    this.router.navigate(['/admin']);
-  }
+
+  this.router.navigate(['/home']);
+
+} else if (res.role === "seller") {
+
+  this.router.navigate(['/seller']);
+
+} else if (res.role === "admin") {
+
+  this.router.navigate(['/admin']);
+
+} else if (res.role === "courier") {
+
+  this.router.navigate(['/courier']);
+
+}
 
 },
 

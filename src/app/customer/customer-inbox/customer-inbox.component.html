@@ -1,0 +1,47 @@
+<div class="container">
+
+    <h2>My Messages</h2>
+
+    <div
+        class="conversation"
+        *ngFor="let convo of conversations"
+        (click)="openChat(convo.store)">
+
+        <h3>
+
+            {{ convo.store.storeName }}
+
+        </h3>
+
+        <p>
+
+            {{ convo.lastMessage }}
+
+        </p>
+
+    </div>
+
+</div><div class="container">
+
+    <h2>My Messages</h2>
+
+    <div
+        class="conversation"
+        *ngFor="let convo of conversations"
+        (click)="openChat(convo.store)">
+
+        <h3>
+
+            {{ convo.store.storeName }}
+
+        </h3>
+
+        <p>
+
+            {{ convo.lastMessage }}
+
+        </p>
+
+    </div>
+
+</div>

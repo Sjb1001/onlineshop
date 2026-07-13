@@ -30,6 +30,8 @@ import { ReviewComponent } from './customer/review/review.component';
 import { ChatComponent } from './customer/chat/chat.component';
 import { SellerInboxComponent } from './seller/seller-inbox/seller-inbox.component';
 import { SellerChatComponent } from './seller/seller-chat/seller-chat.component';
+import { CustomerInboxComponent } from './customer/customer-inbox/customer-inbox.component';
+import { CourierDashboardComponent } from './courier/courier-dashboard/courier-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { SellerChatComponent } from './seller/seller-chat/seller-chat.component'
 
 
 
+
+
   ],
   imports: [
     BrowserModule,
@@ -67,6 +71,8 @@ import { SellerChatComponent } from './seller/seller-chat/seller-chat.component'
     ChatComponent,
     SellerInboxComponent,
     SellerChatComponent,
+    CustomerInboxComponent,
+    CourierDashboardComponent,
 
 
   ],

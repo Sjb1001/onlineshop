@@ -36,6 +36,15 @@
     );
 
   }
+  getCustomerInbox(customerId: string) {
+
+  return this.http.get(
+
+    this.apiUrl + "/customer/" + customerId + "/inbox"
+
+  );
+
+}
 
   getStoreCustomerConversation(storeId: string, customerId: string) {
 

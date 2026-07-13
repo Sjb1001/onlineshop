@@ -14,6 +14,26 @@ const orderSchema = new mongoose.Schema({
         required: true
     },
 
+    deliveryAddress: {
+    type: String,
+    required: true
+},
+
+deliveryLatitude: {
+    type: Number
+},
+
+deliveryLongitude: {
+    type: Number
+},
+
+    // NEW
+    courier: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        default: null
+    },
+
     items: [
 
         {
@@ -39,6 +59,15 @@ const orderSchema = new mongoose.Schema({
 
     status: {
         type: String,
+        enum: [
+            "Pending",
+            "Processing",
+            "Ready for Pickup",
+            "Picked Up",
+            "In Transit",
+            "Delivered",
+            "Cancelled"
+        ],
         default: "Pending"
     }
 

@@ -1,0 +1,45 @@
+.container{
+
+    max-width:800px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+.card{
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+
+}
+
+button{
+
+    padding:10px 20px;
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:5px;
+
+    background:#1976d2;
+
+    color:white;
+
+}
+
+button:hover{
+
+    opacity:.9;
+
+}

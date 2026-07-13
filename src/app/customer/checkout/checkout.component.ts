@@ -13,6 +13,10 @@ export class CheckoutComponent implements OnInit {
 
   total = 0;
 
+  deliveryAddress = "";
+  deliveryLatitude: number | null = null;
+  deliveryLongitude: number | null = null;
+
   constructor(
     private cartService: CartService,
     private orderService: OrderService
@@ -57,23 +61,29 @@ export class CheckoutComponent implements OnInit {
 
   const order = {
 
-    customer,
+  customer,
 
-    store: this.cartItems[0].store,
+  store: this.cartItems[0].store,
 
-    items: this.cartItems.map(item => ({
+  items: this.cartItems.map(item => ({
 
-      product: item._id,
+    product: item._id,
 
-      quantity: 1,
+    quantity: 1,
 
-      price: item.price
+    price: item.price
 
-    })),
+  })),
 
-    total: this.total
+  total: this.total,
 
-  };
+  deliveryAddress: this.deliveryAddress,
+
+  deliveryLatitude: this.deliveryLatitude,
+
+  deliveryLongitude: this.deliveryLongitude
+
+};
 
   this.orderService.placeOrder(order).subscribe({
 

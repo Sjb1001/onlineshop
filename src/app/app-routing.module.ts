@@ -23,7 +23,8 @@ import { ReviewComponent } from './customer/review/review.component';
 import { ChatComponent } from './customer/chat/chat.component';
 import { SellerInboxComponent } from './seller/seller-inbox/seller-inbox.component';
 import { SellerChatComponent } from './seller/seller-chat/seller-chat.component';
-
+import { CustomerInboxComponent } from './customer/customer-inbox/customer-inbox.component';
+import { CourierDashboardComponent } from './courier/courier-dashboard/courier-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin/category', component: CategoryComponent },
   {path: 'seller/create-store',component: CreateStoreComponent},
+
   {
     path: 'admin/sellers',
     component: SellerManagementComponent
@@ -96,6 +98,16 @@ const routes: Routes = [
 {
   path: 'seller/chat/:customerId',
   component: SellerChatComponent
+},
+
+{
+    path: 'customer/inbox',
+    component: CustomerInboxComponent
+},
+
+{
+  path: 'courier',
+  component: CourierDashboardComponent
 },
 
 ];
