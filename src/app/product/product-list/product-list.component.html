@@ -42,6 +42,15 @@
                 <h2 class="price">
                     ₱{{ product.price }}
                 </h2>
+                <p class="rating">
+
+    ⭐
+
+    {{ product.averageRating || 0 | number:'1.1-1' }}
+
+    ({{ product.reviewCount || 0 }} reviews)
+
+</p>
 
                 <div class="buttons">
 
@@ -50,12 +59,13 @@
                     </button>
 
                     <button
-                        class="cart"
-                        (click)="addToCart(product)">
+    class="cart"
+    (click)="addToCart(product)"
+    [disabled]="product.stock <= 0">
 
-                        Add to Cart
+    {{ product.stock <= 0 ? 'Out of Stock' : 'Add to Cart' }}
 
-                    </button>
+</button>
 
                 </div>
 

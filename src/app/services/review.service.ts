@@ -19,4 +19,14 @@ export class ReviewService {
     return this.http.get(this.apiUrl + "/product/" + productId);
   }
 
+  getAverageRating(productId: string) {
+
+  return this.http.get(
+
+    this.apiUrl + "/product/" + productId + "/average"
+
+  );
+
+}
+
 }

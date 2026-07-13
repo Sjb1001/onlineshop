@@ -30,6 +30,17 @@ export class OrderService {
     status
 
   });
+}
+
+cancelOrder(orderId: string) {
+
+  return this.http.put(
+
+    this.apiUrl + "/" + orderId + "/cancel",
+
+    {}
+
+  );
 
 }
 

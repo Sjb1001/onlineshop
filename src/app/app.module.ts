@@ -27,6 +27,9 @@ import { MyProductsComponent } from './seller/my-products/my-products.component'
 import { EditProductComponent } from './seller/edit-product/edit-product.component';
 import { RouterModule } from '@angular/router';
 import { ReviewComponent } from './customer/review/review.component';
+import { ChatComponent } from './customer/chat/chat.component';
+import { SellerInboxComponent } from './seller/seller-inbox/seller-inbox.component';
+import { SellerChatComponent } from './seller/seller-chat/seller-chat.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { ReviewComponent } from './customer/review/review.component';
     EditProductComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,12 @@ import { ReviewComponent } from './customer/review/review.component';
     MatToolbarModule,
     MatButtonModule,
     RouterModule,
-    ReviewComponent
+    ReviewComponent,
+    ChatComponent,
+    SellerInboxComponent,
+    SellerChatComponent,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

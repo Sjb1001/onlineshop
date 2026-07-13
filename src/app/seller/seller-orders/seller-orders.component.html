@@ -14,7 +14,9 @@
 
     <label><strong>Status</strong></label>
 
-    <select [(ngModel)]="order.status">
+    <select
+    [(ngModel)]="order.status"
+    [disabled]="order.status === 'Cancelled'">
 
         <option value="Pending">Pending</option>
 
@@ -29,13 +31,14 @@
     </select>
 
     <button
-        mat-raised-button
-        color="primary"
-        (click)="updateStatus(order)">
+    mat-raised-button
+    color="primary"
+    (click)="updateStatus(order)"
+    [disabled]="order.status === 'Cancelled'">
 
-        Update Status
+    Update Status
 
-    </button>
+</button>
 
 </div>
 

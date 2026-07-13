@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Order = require("../models/Order");
 const Cart = require("../models/Cart");
+const Product = require("../models/Product");
 
 router.post("/checkout", async (req, res) => {
 
@@ -34,21 +35,50 @@ router.post("/checkout", async (req, res) => {
         // For now we assume all items belong to one store
         const storeId = cartItems[0].product.store._id;
 
-        cartItems.forEach(item => {
+        for (const item of cartItems) {
 
-            items.push({
+    // Get the latest product information
+    const latestProduct = await Product.findById(item.product._id);
 
-                product: item.product._id,
+    if (!latestProduct) {
 
-                quantity: item.quantity,
+        return res.status(404).json({
 
-                price: item.product.price
-
-            });
-
-            total += item.product.price * item.quantity;
+            message: "Product not found."
 
         });
+
+    }
+
+    // Check if enough stock is available
+    if (latestProduct.stock < item.quantity) {
+
+        return res.status(400).json({
+
+            message: `${latestProduct.productName} does not have enough stock.`
+
+        });
+
+    }
+
+    items.push({
+
+        product: latestProduct._id,
+
+        quantity: item.quantity,
+
+        price: latestProduct.price
+
+    });
+
+    total += latestProduct.price * item.quantity;
+
+    // Reduce stock
+    latestProduct.stock -= item.quantity;
+
+    await latestProduct.save();
+
+}
 
         const order = new Order({
 
@@ -168,6 +198,77 @@ router.put("/:id/status", async (req, res) => {
 
         res.status(500).json({
             message: err.message
+        });
+
+    }
+
+});
+
+router.put("/:id/cancel", async (req, res) => {
+
+    try {
+
+        const order = await Order.findById(req.params.id);
+
+        if (!order) {
+
+            return res.status(404).json({
+
+                message: "Order not found."
+
+            });
+
+        }
+
+        if (order.status !== "Pending") {
+
+            return res.status(400).json({
+
+                message: "Only pending orders can be cancelled."
+
+            });
+
+        }
+
+        // Restore product stock
+        for (const item of order.items) {
+
+            await Product.findByIdAndUpdate(
+
+                item.product,
+
+                {
+
+                    $inc: {
+
+                        stock: item.quantity
+
+                    }
+
+                }
+
+            );
+
+        }
+
+        order.status = "Cancelled";
+
+        await order.save();
+
+        res.json({
+
+            message: "Order cancelled successfully.",
+
+            order
+
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+
+            message: err.message
+
         });
 
     }

@@ -23,11 +23,32 @@
       <strong>Store:</strong>
       {{ product.store?.storeName }}
     </p>
+    <button (click)="chatSeller()">
+
+    💬 Chat Seller
+
+</button>
 
     <p>
-      <strong>Stock:</strong>
-      {{ product.stock }}
-    </p>
+  <strong>Stock:</strong>
+  {{ product.stock }}
+</p>
+
+<p
+    *ngIf="product.stock <= 0"
+    style="color:red;font-weight:bold;">
+
+    ❌ Out of Stock
+
+</p>
+
+<p
+    *ngIf="product.stock > 0"
+    style="color:green;font-weight:bold;">
+
+    ✅ Available
+
+</p>
 
     <hr>
 
@@ -37,9 +58,13 @@
 
     <br>
 
-    <button (click)="addToCart()">
-      Add to Cart
-    </button>
+    <button
+    (click)="addToCart()"
+    [disabled]="product.stock <= 0">
+
+    {{ product.stock <= 0 ? 'Out of Stock' : 'Add to Cart' }}
+
+</button>
 
     <hr>
 

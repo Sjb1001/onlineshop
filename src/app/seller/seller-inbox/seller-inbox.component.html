@@ -1,0 +1,24 @@
+<div class="container">
+
+    <h2>Customer Inbox</h2>
+
+    <div
+        class="conversation"
+        *ngFor="let convo of conversations"
+        (click)="openChat(convo.customer)">
+
+        <h3>
+
+            {{ convo.customer.fullname }}
+
+        </h3>
+
+        <p>
+
+            {{ convo.lastMessage }}
+
+        </p>
+
+    </div>
+
+</div>

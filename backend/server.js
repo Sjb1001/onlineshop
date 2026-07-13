@@ -10,6 +10,7 @@
   const orderRoutes = require("./routes/orderRoutes");
   const cartRoutes = require("./routes/cartRoutes");
   const reviewRoutes = require("./routes/reviewRoutes");
+  const messageRoutes = require("./routes/messageRoutes");
 
   const app = express();
 
@@ -25,6 +26,7 @@
   app.use("/api/orders", orderRoutes);
   app.use("/api/cart", cartRoutes);
   app.use("/api/reviews", reviewRoutes);
+  app.use("/api/messages", messageRoutes);
 
   console.log("Category routes loaded");
 

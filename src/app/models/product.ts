@@ -22,4 +22,7 @@ export interface Product {
     storeName: string;
   };
 
+  averageRating?: number;
+
+reviewCount?: number;
 }

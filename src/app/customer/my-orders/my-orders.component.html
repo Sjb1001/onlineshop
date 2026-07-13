@@ -16,6 +16,15 @@
             <strong>Status:</strong>
             {{ order.status }}
         </p>
+        <div *ngIf="order.status === 'Pending'">
+
+    <button (click)="cancelOrder(order)">
+
+        Cancel Order
+
+    </button>
+
+</div>
 
         <p>
             <strong>Total:</strong>

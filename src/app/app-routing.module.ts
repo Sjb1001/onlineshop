@@ -20,6 +20,9 @@ import { CheckoutComponent } from './customer/checkout/checkout.component';
 import { MyOrdersComponent } from './customer/my-orders/my-orders.component';
 import { SellerOrdersComponent } from './seller/seller-orders/seller-orders.component';
 import { ReviewComponent } from './customer/review/review.component';
+import { ChatComponent } from './customer/chat/chat.component';
+import { SellerInboxComponent } from './seller/seller-inbox/seller-inbox.component';
+import { SellerChatComponent } from './seller/seller-chat/seller-chat.component';
 
 
 const routes: Routes = [
@@ -78,7 +81,22 @@ const routes: Routes = [
 {
   path: 'customer/review',
   component: ReviewComponent
-}
+},
+
+{
+  path: 'chat/:sellerId',
+  component: ChatComponent
+},
+
+{
+    path: 'seller/inbox',
+    component: SellerInboxComponent
+},
+
+{
+  path: 'seller/chat/:customerId',
+  component: SellerChatComponent
+},
 
 ];
 

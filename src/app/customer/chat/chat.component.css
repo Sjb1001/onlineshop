@@ -1,0 +1,53 @@
+.chat-container{
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+.messages{
+
+    height:400px;
+
+    overflow-y:auto;
+
+    border:1px solid #ddd;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+    background:#fafafa;
+
+}
+
+.message{
+
+    margin-bottom:15px;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    background:white;
+
+}
+
+.send-box{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.send-box input{
+
+    flex:1;
+
+    padding:10px;
+
+}

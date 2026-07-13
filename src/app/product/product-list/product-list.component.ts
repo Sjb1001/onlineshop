@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { Product } from 'src/app/models/product';
 import { CartService } from '../../cart/cart.service';
+import { ReviewService } from '../../services/review.service';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,7 @@ export class ProductListComponent implements OnInit{
   filteredProducts: Product[] = [];
   products: Product[] = [];
 
-  constructor(private productService: ProductService, private cartService: CartService){
+  constructor(private productService: ProductService, private cartService: CartService, private reviewService: ReviewService){
 
   }
 
@@ -22,10 +23,34 @@ export class ProductListComponent implements OnInit{
     this.productService.getProducts().subscribe((data: any) => {
       this.products = data as Product[];
       this.filteredProducts = [...this.products];
+      this.products.forEach(product => {
+
+    this.reviewService.getAverageRating(product._id!).subscribe({
+
+        next: (rating: any) => {
+
+            product.averageRating = rating.averageRating;
+
+            product.reviewCount = rating.reviewCount;
+
+        },
+
+        error: err => console.log(err)
+
+    });
+
+});
       console.log(this.products);
     });
   }
 addToCart(product: Product): void {
+  if (product.stock <= 0) {
+
+  alert("This product is out of stock.");
+
+  return;
+
+}
 
   const customerId = localStorage.getItem("userId");
 

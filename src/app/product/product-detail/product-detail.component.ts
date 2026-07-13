@@ -79,6 +79,14 @@ averageRating = 0;
 }
 
   addToCart() {
+if (this.product.stock <= 0) {
+
+  alert("This product is out of stock.");
+
+  return;
+
+}
+
     if (!this.product) {
       return;
     }
@@ -109,4 +117,24 @@ averageRating = 0;
   buyNow(): void {
     this.router.navigate(['/checkout']);
   }
+
+  chatSeller(): void {
+
+  if (!this.product?.store?._id) {
+
+    alert("Store not found.");
+
+    return;
+
+  }
+
+  this.router.navigate([
+
+    "/chat",
+
+    this.product.store._id
+
+  ]);
+
+}
 }

@@ -14,48 +14,78 @@ export class MyOrdersComponent implements OnInit {
 
   orders: any[] = [];
 
-  constructor(private orderService: OrderService, private router: Router) {}
+  constructor(
+    private orderService: OrderService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
 
-    const customerId = localStorage.getItem("userId");
-
-    if (customerId) {
-
-      this.orderService.getCustomerOrders(customerId).subscribe({
-
-        next: (data: any) => {
-
-          this.orders = data;
-
-          console.log(this.orders);
-
-        },
-
-        error: (err: any) => {
-
-          console.log(err);
-
-        }
-
-      });
-
-    }
+    this.loadOrders();
 
   }
-    writeReview(product: any): void {
 
-    this.router.navigate(
-      ['/customer/review'],
-      {
-        queryParams: {
-          product: product._id
-        }
+  loadOrders() {
+
+    const customerId = localStorage.getItem("userId");
+
+    if (!customerId) return;
+
+    this.orderService.getCustomerOrders(customerId).subscribe({
+
+      next: (data: any) => {
+
+        this.orders = data;
+
+      },
+
+      error: (err: any) => {
+
+        console.log(err);
+
       }
+
+    });
+
+  }
+
+  cancelOrder(order: any) {
+
+    const confirmed = window.confirm(
+      "Are you sure you want to cancel this order?"
     );
 
+    if (!confirmed) return;
+
+    this.orderService.cancelOrder(order._id).subscribe({
+
+      next: () => {
+
+        alert("Order cancelled successfully!");
+
+        this.loadOrders();
+
+      },
+
+      error: (err: any) => {
+
+        alert(err.error.message);
+
+      }
+
+    });
+
+  }
+
+  writeReview(product: any) {
+    if (!product?._id) {
+      alert('Product information is missing.');
+      return;
+    }
+
+    this.router.navigate(['/review'], {
+      queryParams: { productId: product._id }
+    });
   }
 
 }
-
-

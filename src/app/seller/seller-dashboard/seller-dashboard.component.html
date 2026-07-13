@@ -59,18 +59,31 @@
             </button>
 
             <button
-                routerLink="/seller/my-products"
-                *ngIf="store.status === 'approved'">
+    routerLink="/seller/my-products"
+    *ngIf="store.status === 'approved'">
 
-                📦 My Products
+    📦 My Products
 
-            </button>
+</button>
 
-            <button
-  mat-raised-button
-  color="accent"
-  routerLink="/seller/orders">
-  📦 Orders
+<button
+    mat-raised-button
+    color="accent"
+    routerLink="/seller/orders"
+    *ngIf="store.status === 'approved'">
+
+    📦 Orders
+
+</button>
+
+<button
+    mat-raised-button
+    color="primary"
+    routerLink="/seller/inbox"
+    *ngIf="store.status === 'approved'">
+
+    💬 Customer Inbox
+
 </button>
 
         </div>
