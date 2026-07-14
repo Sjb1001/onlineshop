@@ -25,47 +25,67 @@
 
             <div class="content">
 
-                <h3>{{ product.productName }}</h3>
+    <h3>{{ product.productName }}</h3>
 
-                <p class="category">
-                    {{ product.category.name }}
-                </p>
+    <p class="category">
+        {{ product.category.name }}
+    </p>
 
-                <p class="store">
-                    Sold by {{ product.store.storeName }}
-                </p>
+    <p class="store">
+        🏪 {{ product.store.storeName }}
+    </p>
 
-                <p class="description">
-                    {{ product.description }}
-                </p>
+    <p class="rating">
+        ⭐ {{ product.averageRating || 0 | number:'1.1-1' }}
+        ({{ product.reviewCount || 0 }} Reviews)
+    </p>
 
-                <h2 class="price">
-                    ₱{{ product.price }}
-                </h2>
-                <p class="rating">
+    <p class="stock"
+       [class.out]="product.stock==0">
 
-    ⭐
+        Stock:
+        {{ product.stock }}
 
-    {{ product.averageRating || 0 | number:'1.1-1' }}
+    </p>
 
-    ({{ product.reviewCount || 0 }} reviews)
+    <p class="description">
 
-</p>
+        {{ product.description }}
 
-                <div class="buttons">
+    </p>
 
-                    <button class="details">
-                        View Details
-                    </button>
+    <h2 class="price">
 
-                    <button
-    class="cart"
-    (click)="addToCart(product)"
-    [disabled]="product.stock <= 0">
+        ₱{{ product.price }}
 
-    {{ product.stock <= 0 ? 'Out of Stock' : 'Add to Cart' }}
+    </h2>
 
-</button>
+    <div class="buttons">
+
+        <button
+            class="details">
+
+            View Details
+
+        </button>
+
+        <button
+
+            class="cart"
+
+            (click)="addToCart(product); $event.stopPropagation()"
+
+            [disabled]="product.stock==0">
+
+            {{ product.stock==0 ? 'Out of Stock' : 'Add to Cart' }}
+
+        </button>
+
+    </div>
+
+</div>
+
+                  
 
                 </div>
 
@@ -73,6 +93,5 @@
 
         </div>
 
-    </div>
 
-</div>
+

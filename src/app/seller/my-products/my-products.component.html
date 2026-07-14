@@ -1,60 +1,116 @@
-<div class="container">
+<div class="products-page">
 
-    <h1>My Products</h1>
+    <div class="page-header">
 
-    <hr>
+        <div>
 
-    <table *ngIf="products.length > 0">
+            <h1>📦 My Products</h1>
 
-        <thead>
+            <p>Manage all products in your store.</p>
 
-            <tr>
+        </div>
 
-                <th>Product</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Action</th>
+        <button
+            class="add-btn"
+            routerLink="/seller/add-product">
 
-            </tr>
+            ➕ Add Product
 
-        </thead>
+        </button>
 
-        <tbody>
+    </div>
 
-            <tr *ngFor="let product of products">
+    <div
+        class="product-grid"
+        *ngIf="products.length > 0">
 
-                <td>{{ product.productName }}</td>
+        <div
+            class="product-card"
+            *ngFor="let product of products">
 
-                <td>{{ product.category?.name }}</td>
+            <img
+                [src]="product.image ? 'http://localhost:3000' + product.image : 'assets/no-image.png'">
 
-                <td>₱{{ product.price }}</td>
+            <div class="card-body">
 
-                <td>{{ product.stock }}</td>
+                <h2>
 
-                <td>
+                    {{ product.productName }}
 
-                    <button [routerLink]="['/seller/edit-product', product._id]">
-    Edit
-</button>
+                </h2>
+
+                <span class="category">
+
+                    {{ product.category?.name }}
+
+                </span>
+
+                <div class="price">
+
+                    ₱{{ product.price }}
+
+                </div>
+
+                <div
+                    class="stock"
+                    [ngClass]="{
+
+                    low: product.stock <= 5,
+
+                    out: product.stock == 0
+
+                }">
+
+                    Stock:
+                    {{ product.stock }}
+
+                </div>
+
+                <div class="buttons">
 
                     <button
-    class="delete-btn"
-    (click)="deleteProduct(product._id)">
-    Delete
-</button>
 
-                </td>
+                        class="edit"
 
-            </tr>
+                        [routerLink]="['/seller/edit-product',product._id]">
 
-        </tbody>
+                        ✏ Edit
 
-    </table>
+                    </button>
 
-    <div *ngIf="products.length == 0">
+                    <button
 
-        <p>No products found.</p>
+                        class="delete"
+
+                        (click)="deleteProduct(product._id)">
+
+                        🗑 Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="empty"
+        *ngIf="products.length==0">
+
+        <h2>
+
+            No products yet.
+
+        </h2>
+
+        <p>
+
+            Add your first product to start selling.
+
+        </p>
 
     </div>
 

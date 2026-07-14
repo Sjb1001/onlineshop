@@ -1,15 +1,113 @@
-<div class="container">
+<div class="admin-page">
 
-    <h1>Admin Dashboard</h1>
+    <div class="header">
 
-    <hr>
+        <h1>👑 Admin Dashboard</h1>
 
-    <button routerLink="/admin/category">
-        Manage Categories
-    </button>
+        <p>
 
-    <button routerLink="/admin/stores">
-        Manage Stores
-    </button>
+            Welcome Administrator
+
+        </p>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="icon">📂</div>
+
+            <h2>Categories</h2>
+
+            <p>Manage product categories.</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="icon">🏪</div>
+
+            <h2>Stores</h2>
+
+            <p>Approve and manage stores.</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <div class="icon">👥</div>
+
+            <h2>Sellers</h2>
+
+            <p>Manage registered sellers.</p>
+
+        </div>
+
+    </div>
+
+    <h2 class="section-title">
+
+        Management
+
+    </h2>
+
+    <div class="management-grid">
+
+        <div class="manage-card">
+
+            <div>
+
+                <h3>📂 Category Management</h3>
+
+                <p>Create, edit and delete product categories.</p>
+
+            </div>
+
+            <button routerLink="/admin/category">
+
+                Open
+
+            </button>
+
+        </div>
+
+        <div class="manage-card">
+
+            <div>
+
+                <h3>🏪 Store Management</h3>
+
+                <p>Approve stores and assign allowed categories.</p>
+
+            </div>
+
+            <button routerLink="/admin/stores">
+
+                Open
+
+            </button>
+
+        </div>
+
+        <div class="manage-card">
+
+            <div>
+
+                <h3>👥 Seller Management</h3>
+
+                <p>View and manage registered sellers.</p>
+
+            </div>
+
+            <button routerLink="/admin/sellers">
+
+                Open
+
+            </button>
+
+        </div>
+
+    </div>
 
 </div>

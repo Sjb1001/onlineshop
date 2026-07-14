@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../cart/cart.service';
 import { OrderService } from '../../services/order.service';
+import * as L from 'leaflet';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-checkout',
@@ -19,7 +21,8 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +30,93 @@ export class CheckoutComponent implements OnInit {
     this.loadCart();
 
   }
+
+    getCurrentLocation() {
+
+  if (!navigator.geolocation) {
+
+    alert("Geolocation not supported.");
+
+    return;
+
+  }
+
+  navigator.geolocation.getCurrentPosition(position => {
+
+    this.deliveryLatitude = position.coords.latitude;
+
+    this.deliveryLongitude = position.coords.longitude;
+
+    this.loadMap();
+
+  });
+
+}
+map!: L.Map;
+marker!: L.Marker;
+
+loadMap() {
+
+  if (this.map) {
+
+    this.map.remove();
+
+  }
+
+  this.map = L.map('checkoutMap').setView(
+
+    [
+
+      this.deliveryLatitude!,
+
+      this.deliveryLongitude!
+
+    ],
+
+    15
+
+  );
+
+  L.tileLayer(
+
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+
+    {
+
+      maxZoom:19
+
+    }
+
+  ).addTo(this.map);
+
+  this.marker = L.marker(
+  [
+    this.deliveryLatitude!,
+    this.deliveryLongitude!
+  ],
+  {
+    draggable: true
+  }
+).addTo(this.map);
+
+// Add this immediately after the marker is added
+setTimeout(() => {
+  this.map.invalidateSize();
+}, 100);
+
+  this.marker.on('dragend', () => {
+
+    const pos = this.marker.getLatLng();
+
+    this.deliveryLatitude = pos.lat;
+
+    this.deliveryLongitude = pos.lng;
+
+    this.getAddressFromCoordinates();
+
+  });
+
+}
 
   loadCart() {
 
@@ -36,20 +126,23 @@ export class CheckoutComponent implements OnInit {
 
     this.cartService.getCartItems(customerId).subscribe((data: any) => {
 
+       console.log(data);
+
       this.cartItems = data;
 
       this.total = 0;
 
       this.cartItems.forEach(item => {
 
-        this.total += item.price;
+  this.total += item.product.price * item.quantity;
 
-      });
+});
 
     });
 
   }
   placeOrder() {
+    console.log("Place Order clicked");
 
   const customer = localStorage.getItem("userId");
 
@@ -67,11 +160,11 @@ export class CheckoutComponent implements OnInit {
 
   items: this.cartItems.map(item => ({
 
-    product: item._id,
+  product: item.product._id,
 
-    quantity: 1,
+  quantity: item.quantity,
 
-    price: item.price
+  price: item.product.price
 
   })),
 
@@ -93,7 +186,35 @@ export class CheckoutComponent implements OnInit {
 
     },
 
-    error: err => {
+    error: (err) => {
+
+  console.log(err);
+
+  console.log(err.error);
+
+  alert(err.error.message);
+
+}
+
+  });
+
+}
+
+getAddressFromCoordinates() {
+
+  this.http.get<any>(
+
+    `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${this.deliveryLatitude}&lon=${this.deliveryLongitude}`
+
+  ).subscribe({
+
+    next: (data) => {
+
+      this.deliveryAddress = data.display_name;
+
+    },
+
+    error: (err) => {
 
       console.log(err);
 

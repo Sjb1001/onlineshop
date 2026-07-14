@@ -1,64 +1,128 @@
-<div class="container">
+<div class="store-page">
 
-    <h1>Store Management</h1>
+    <div class="page-header">
 
-    <table>
+        <h1>🏪 Store Management</h1>
 
-        <thead>
+        <p>
+            Review, approve, and manage seller stores.
+        </p>
 
-            <tr>
-                <th>Store</th>
-                <th>Owner</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
+    </div>
 
-        </thead>
+    <div class="card">
 
-        <tbody>
+        <table>
 
-            <tr *ngFor="let store of stores">
+            <thead>
 
-                <td>{{ store.storeName }}</td>
+                <tr>
 
-                <td>{{ store.owner?.fullname }}</td>
+                    <th>Store</th>
 
-                <td>{{ store.status }}</td>
+                    <th>Owner</th>
 
-                <td>
+                    <th>Status</th>
 
-                     <button
-        *ngIf="store.status=='pending'"
-        (click)="approve(store._id)">
-        Approve
-    </button>
+                    <th width="320">Actions</th>
 
-    <button
-        *ngIf="store.status=='pending'"
-        (click)="reject(store._id)">
-        Reject
-    </button>
+                </tr>
 
-    <button
-        *ngIf="store.status=='approved'"
-        [routerLink]="['/admin/store', store._id, 'categories']">
+            </thead>
 
-        Manage Categories
+            <tbody>
 
-    </button>
+                <tr *ngFor="let store of stores">
 
-                    <span *ngIf="store.status!='pending'">
+                    <td>
 
-                        {{ store.status }}
+                        <strong>{{ store.storeName }}</strong>
 
-                    </span>
+                    </td>
 
-                </td>
+                    <td>
 
-            </tr>
+                        {{ store.owner?.fullname }}
 
-        </tbody>
+                    </td>
 
-    </table>
+                    <td>
+
+                        <span
+                            class="status"
+                            [ngClass]="{
+
+                            pending: store.status=='pending',
+
+                            approved: store.status=='approved',
+
+                            rejected: store.status=='rejected'
+
+                            }">
+
+                            {{ store.status }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <div
+                            class="actions"
+                            *ngIf="store.status=='pending'">
+
+                            <button
+                                class="approve-btn"
+                                (click)="approve(store._id)">
+
+                                ✔ Approve
+
+                            </button>
+
+                            <button
+                                class="reject-btn"
+                                (click)="reject(store._id)">
+
+                                ✖ Reject
+
+                            </button>
+
+                        </div>
+
+                        <button
+                            *ngIf="store.status=='approved'"
+                            class="category-btn"
+                            [routerLink]="['/admin/store', store._id, 'categories']">
+
+                            📂 Manage Categories
+
+                        </button>
+
+                        <span
+                            *ngIf="store.status=='rejected'"
+                            class="rejected-text">
+
+                            Rejected
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div
+            class="empty"
+            *ngIf="stores.length==0">
+
+            No stores available.
+
+        </div>
+
+    </div>
 
 </div>

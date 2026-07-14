@@ -1,83 +1,237 @@
-.container{
+.product-page{
 
-    display:flex;
+    display:grid;
+
+    grid-template-columns:420px 1fr;
 
     gap:50px;
 
-    padding:40px;
+    padding:50px 80px;
+
+    background:#F5F5F7;
 
 }
 
-.left{
+.image-section{
 
-    width:45%;
+    background:white;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
 
 }
 
-.left img{
+.image-section img{
 
     width:100%;
+
+    height:420px;
+
+    object-fit:cover;
 
     border-radius:10px;
 
 }
 
-.right{
+.details-section{
 
-    width:55%;
+    background:white;
 
-}
+    border-radius:12px;
 
-.right h1{
+    padding:35px;
 
-    font-size:32px;
-
-    margin-bottom:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
 
 }
 
-.right h2{
+.category{
 
-    color:#ee4d2d;
+    display:inline-block;
+
+    background:#6A1B9A;
+
+    color:white;
+
+    padding:6px 15px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+}
+
+.details-section h1{
+
+    margin:20px 0;
+
+    font-size:38px;
+
+    color:#333;
+
+}
+
+.rating{
+
+    color:#F9A825;
+
+    font-weight:bold;
 
     margin-bottom:20px;
 
 }
 
-button{
+.price{
 
-    background:#ee4d2d;
+    font-size:42px;
 
-    color:white;
+    color:#6A1B9A;
 
-    border:none;
+    font-weight:bold;
 
-    padding:15px 30px;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-size:18px;
+    margin:20px 0;
 
 }
 
-button:hover{
+.store{
 
-    background:#d63f20;
+    font-size:18px;
+
+    margin-bottom:15px;
+
+}
+
+.stock{
+
+    color:#2E7D32;
+
+    font-weight:bold;
+
+    margin-bottom:30px;
+
+}
+
+.stock.out{
+
+    color:#E53935;
+
+}
+
+.description{
+
+    margin:30px 0;
+
+    line-height:1.7;
+
+}
+
+.actions{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.actions button{
+
+    flex:1;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+}
+
+.cart-btn{
+
+    background:#6A1B9A;
+
+    color:white;
+
+}
+
+.cart-btn:hover{
+
+    background:#7B1FA2;
+
+}
+
+.chat-btn{
+
+    background:white;
+
+    color:#6A1B9A;
+
+    border:2px solid #6A1B9A !important;
+
+}
+
+.chat-btn:hover{
+
+    background:#F3E5F5;
+
+}
+
+.reviews-section{
+
+    padding:0 80px 60px;
+
+    background:#F5F5F7;
+
+}
+
+.reviews-section h2{
+
+    margin-bottom:30px;
 
 }
 
 .review-card{
 
-    margin-top:20px;
+    background:white;
 
-    padding:15px;
+    padding:25px;
 
-    border:1px solid #ddd;
+    border-radius:12px;
 
-    border-radius:8px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
 
-    background:#fafafa;
+    margin-bottom:20px;
+
+}
+
+.review-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+}
+
+.empty{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
 
 }

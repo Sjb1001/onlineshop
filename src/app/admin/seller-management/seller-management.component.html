@@ -1,1 +1,96 @@
-<p>seller-management works!</p>
+<div class="seller-page">
+
+    <div class="page-header">
+
+        <h1>👥 Seller Management</h1>
+
+        <p>Registered seller accounts</p>
+
+    </div>
+
+    <div class="card">
+
+        <table>
+
+            <thead>
+
+<tr>
+
+    <th>Name</th>
+
+    <th>Email</th>
+
+    <th>Status</th>
+
+    <th>Role</th>
+
+    <th>Action</th>
+
+</tr>
+
+</thead>
+
+            <tbody>
+
+                <tr *ngFor="let seller of sellers">
+
+    <td>{{ seller.fullname }}</td>
+
+    <td>{{ seller.email }}</td>
+
+    <td>
+
+        <span
+            [style.color]="seller.status === 'Active' ? 'green' : 'red'">
+
+            {{ seller.status }}
+
+        </span>
+
+    </td>
+
+    <td>
+
+        <span class="role-badge">
+
+            {{ seller.role }}
+
+        </span>
+
+    </td>
+
+    <td>
+
+        <button
+
+            (click)="changeStatus(seller)"
+
+            [class.deactivate]="seller.status === 'Active'"
+
+            [class.activate]="seller.status === 'Inactive'">
+
+            {{ seller.status === 'Active'
+                ? 'Deactivate'
+                : 'Activate' }}
+
+        </button>
+
+    </td>
+
+</tr>
+
+            </tbody>
+
+        </table>
+
+        <div
+            class="empty"
+            *ngIf="sellers.length==0">
+
+            No sellers found.
+
+        </div>
+
+    </div>
+
+</div>

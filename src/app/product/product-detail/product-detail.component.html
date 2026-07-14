@@ -1,109 +1,142 @@
-<div class="container" *ngIf="product">
+<div class="product-page" *ngIf="product">
 
-  <div class="left">
+    <div class="image-section">
 
-    <img
-      [src]="product.image ? 'http://localhost:3000' + product.image : 'assets/no-image.png'"
-      [alt]="product.productName">
+        <img
+            [src]="product.image ? 'http://localhost:3000' + product.image : 'assets/no-image.png'"
+            [alt]="product.productName">
 
-  </div>
+    </div>
 
-  <div class="right">
+    <div class="details-section">
 
-    <h1>{{ product.productName }}</h1>
+        <span class="category">
 
-    <h2>₱{{ product.price }}</h2>
+            {{ product.category?.name }}
 
-    <p>
-      <strong>Category:</strong>
-      {{ product.category?.name }}
-    </p>
+        </span>
 
-    <p>
-      <strong>Store:</strong>
-      {{ product.store?.storeName }}
-    </p>
-    <button (click)="chatSeller()">
+        <h1>
 
-    💬 Chat Seller
+            {{ product.productName }}
 
-</button>
+        </h1>
 
-    <p>
-  <strong>Stock:</strong>
-  {{ product.stock }}
-</p>
+        <div class="rating">
 
-<p
-    *ngIf="product.stock <= 0"
-    style="color:red;font-weight:bold;">
+            ⭐ {{ averageRating | number:'1.1-1' }}
 
-    ❌ Out of Stock
+            ({{ reviews.length }} Reviews)
 
-</p>
+        </div>
 
-<p
-    *ngIf="product.stock > 0"
-    style="color:green;font-weight:bold;">
+        <div class="price">
 
-    ✅ Available
+            ₱{{ product.price }}
 
-</p>
+        </div>
 
-    <hr>
+        <div class="store">
 
-    <h3>Description</h3>
+            🏪 {{ product.store?.storeName }}
 
-    <p>{{ product.description }}</p>
+        </div>
 
-    <br>
+        <div
+            class="stock"
+            [class.out]="product.stock<=0">
 
-    <button
-    (click)="addToCart()"
-    [disabled]="product.stock <= 0">
+            {{ product.stock>0 ?
 
-    {{ product.stock <= 0 ? 'Out of Stock' : 'Add to Cart' }}
+            '✅ In Stock ('+product.stock+')'
 
-</button>
+            :
 
-    <hr>
+            '❌ Out of Stock'
 
-<h2>Customer Reviews</h2>
+            }}
 
-<p *ngIf="reviews.length > 0">
+        </div>
 
-  ⭐ Average Rating:
+        <div class="description">
 
-  {{ averageRating | number:'1.1-1' }}/5
+            <h3>Description</h3>
 
-</p>
+            <p>
 
-<div *ngIf="reviews.length === 0">
+                {{ product.description }}
 
-  <p>No reviews yet.</p>
+            </p>
 
-</div>
+        </div>
 
-<div *ngFor="let review of reviews" class="review-card">
+        <div class="actions">
 
-  <h4>{{ review.customer.fullname }}</h4>
+            <button
+                class="cart-btn"
+                (click)="addToCart()"
+                [disabled]="product.stock<=0">
 
-  <p>
+                {{ product.stock<=0 ? 'Out of Stock' : '🛒 Add to Cart' }}
 
-    ⭐ {{ review.rating }}/5
+            </button>
 
-  </p>
+            <button
+                class="chat-btn"
+                (click)="chatSeller()">
 
-  <p>
+                💬 Chat Seller
 
-    {{ review.comment }}
+            </button>
 
-  </p>
+        </div>
 
-  <hr>
+    </div>
 
 </div>
 
-  </div>
+<div class="reviews-section" *ngIf="product">
+
+    <h2>
+
+        Customer Reviews
+
+    </h2>
+
+    <div
+        *ngIf="reviews.length==0"
+        class="empty">
+
+        No reviews yet.
+
+    </div>
+
+    <div
+        class="review-card"
+        *ngFor="let review of reviews">
+
+        <div class="review-header">
+
+            <strong>
+
+                {{ review.customer.fullname }}
+
+            </strong>
+
+            <span>
+
+                ⭐ {{ review.rating }}/5
+
+            </span>
+
+        </div>
+
+        <p>
+
+            {{ review.comment }}
+
+        </p>
+
+    </div>
 
 </div>

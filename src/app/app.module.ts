@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { ProductModule } from './product/product.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -32,6 +30,7 @@ import { SellerInboxComponent } from './seller/seller-inbox/seller-inbox.compone
 import { SellerChatComponent } from './seller/seller-chat/seller-chat.component';
 import { CustomerInboxComponent } from './customer/customer-inbox/customer-inbox.component';
 import { CourierDashboardComponent } from './courier/courier-dashboard/courier-dashboard.component';
+import { DeliveryMapComponent } from './shared/delivery-map/delivery-map.component';
 
 @NgModule({
   declarations: [
@@ -52,9 +51,6 @@ import { CourierDashboardComponent } from './courier/courier-dashboard/courier-d
     EditProductComponent,
 
 
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -73,9 +69,9 @@ import { CourierDashboardComponent } from './courier/courier-dashboard/courier-d
     SellerChatComponent,
     CustomerInboxComponent,
     CourierDashboardComponent,
-
-
+    DeliveryMapComponent,
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

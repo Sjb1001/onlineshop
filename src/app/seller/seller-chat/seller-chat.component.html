@@ -1,31 +1,34 @@
-<div class="chat-container">
+<div class="chat-page">
 
-    <h2>Customer Conversation</h2>
+    <div class="chat-header">
+
+        <h2>💬 Customer Conversation</h2>
+
+    </div>
 
     <div class="messages">
 
         <div
             *ngFor="let msg of messages"
-            [style.text-align]="msg.sender._id === sellerId ? 'right' : 'left'">
+            class="message-row"
+            [class.me]="msg.sender._id === sellerId">
 
             <div
-                style="
-                    display:inline-block;
-                    padding:10px;
-                    margin:8px;
-                    border-radius:10px;
-                    background:#f1f1f1;
-                ">
+                class="message-bubble"
+                [class.my-message]="msg.sender._id === sellerId"
+                [class.other-message]="msg.sender._id !== sellerId">
 
-                <strong>
+                <div class="sender">
 
                     {{ msg.sender.fullname }}
 
-                </strong>
+                </div>
 
-                <br>
+                <div class="text">
 
-                {{ msg.message }}
+                    {{ msg.message }}
+
+                </div>
 
             </div>
 
@@ -39,8 +42,7 @@
             [(ngModel)]="newMessage"
             placeholder="Type your reply...">
 
-        <button
-            (click)="sendMessage()">
+        <button (click)="sendMessage()">
 
             Send
 

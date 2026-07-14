@@ -1,49 +1,94 @@
-<div class="container">
+<div class="category-page">
 
-    <h2>Category Management</h2>
+    <div class="page-header">
 
-    <div class="form">
+        <h1>📂 Category Management</h1>
 
-        <input
-            type="text"
-            placeholder="Category Name"
-            [(ngModel)]="name">
-
-        <button (click)="addCategory()">
-            Add Category
-        </button>
+        <p>
+            Create and manage product categories.
+        </p>
 
     </div>
 
-    <table>
+    <!-- ADD CATEGORY -->
 
-        <thead>
+    <div class="card">
 
-            <tr>
-                <th>Category</th>
-                <th>Action</th>
-            </tr>
+        <h2>Add New Category</h2>
 
-        </thead>
+        <div class="form-row">
 
-        <tbody>
+            <input
+                type="text"
+                placeholder="Enter category name..."
+                [(ngModel)]="name">
 
-            <tr *ngFor="let category of categories">
+            <button (click)="addCategory()">
 
-                <td>{{ category.name }}</td>
+                ➕ Add Category
 
-                <td>
+            </button>
 
-                    <button (click)="deleteCategory(category._id)">
-                        Delete
-                    </button>
+        </div>
 
-                </td>
+    </div>
 
-            </tr>
+    <!-- CATEGORY TABLE -->
 
-        </tbody>
+    <div class="card">
 
-    </table>
+        <h2>Existing Categories</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Category</th>
+
+                    <th width="180">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let category of categories">
+
+                    <td>
+
+                        {{ category.name }}
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="delete-btn"
+                            (click)="deleteCategory(category._id)">
+
+                            🗑 Delete
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div
+            class="empty"
+            *ngIf="categories.length==0">
+
+            No categories found.
+
+        </div>
+
+    </div>
 
 </div>

@@ -1,21 +1,52 @@
-.container{
+.add-product-page{
 
-    width:70%;
-    margin:40px auto;
+    background:#F5F5F7;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:50px 20px;
+
+}
+
+.form-card{
+
+    width:100%;
+
+    max-width:800px;
 
     background:white;
 
-    padding:30px;
+    border-radius:18px;
 
-    border-radius:10px;
+    padding:35px;
 
-    box-shadow:0 0 10px rgba(0,0,0,.1);
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.form-card h1{
+
+    color:#6A1B9A;
+
+    margin-bottom:8px;
+
+}
+
+.subtitle{
+
+    color:#777;
+
+    margin-bottom:30px;
 
 }
 
 .form-group{
 
-    margin-bottom:20px;
+    margin-bottom:22px;
 
 }
 
@@ -23,46 +54,118 @@ label{
 
     display:block;
 
+    font-weight:bold;
+
     margin-bottom:8px;
 
-    font-weight:bold;
+    color:#333;
 
 }
 
 input,
+
 textarea,
+
 select{
 
     width:100%;
 
-    padding:10px;
+    padding:14px;
 
-    border:1px solid #ccc;
+    border:1px solid #ddd;
 
-    border-radius:5px;
+    border-radius:10px;
+
+    font-size:15px;
+
+    transition:.3s;
 
     box-sizing:border-box;
 
 }
 
-button{
+input:focus,
 
-    background:#6a1b9a;
+textarea:focus,
 
-    color:white;
+select:focus{
 
-    border:none;
+    outline:none;
 
-    padding:12px 25px;
+    border-color:#6A1B9A;
 
-    border-radius:5px;
-
-    cursor:pointer;
+    box-shadow:0 0 0 3px rgba(106,27,154,.15);
 
 }
 
-button:hover{
+textarea{
 
-    background:#4a148c;
+    resize:vertical;
+
+}
+
+.image-upload{
+
+    margin-bottom:25px;
+
+}
+
+.image-upload input{
+
+    padding:10px;
+
+    background:#fafafa;
+
+}
+
+.two-column{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+.save-btn{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#6A1B9A;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.save-btn:hover{
+
+    background:#7B1FA2;
+
+}
+
+@media(max-width:768px){
+
+    .two-column{
+
+        grid-template-columns:1fr;
+
+    }
 
 }

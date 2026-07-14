@@ -1,49 +1,178 @@
-<div class="container">
+<div class="courier-page">
 
-<h2>🚚 Available Deliveries</h2>
+    <div class="header">
 
-<div class="card" *ngFor="let order of availableOrders">
+        <div>
 
-    <h3>{{ order.store.storeName }}</h3>
+            <h1>🚚 Courier Dashboard</h1>
 
-    <p>{{ order.customer.fullname }}</p>
+            <p>Manage deliveries and update delivery status.</p>
 
-    <button (click)="accept(order)">
+        </div>
 
-        Accept Delivery
+    </div>
 
-    </button>
+    <!-- AVAILABLE DELIVERIES -->
 
-</div>
+    <section>
 
-<hr>
+        <h2>📦 Available Deliveries</h2>
 
-<h2>📦 My Deliveries</h2>
+        <div class="empty" *ngIf="availableOrders.length==0">
 
-<div class="card" *ngFor="let order of myOrders">
+            No available deliveries.
 
-    <h3>{{ order.store.storeName }}</h3>
+        </div>
 
-    <p>{{ order.customer.fullname }}</p>
+        <div class="order-card" *ngFor="let order of availableOrders">
 
-    <p>Status: {{ order.status }}</p>
+            <div class="card-info">
 
-    <button
-        *ngIf="order.status=='Picked Up'"
-        (click)="updateStatus(order,'In Transit')">
+                <div class="details">
 
-        Mark In Transit
+                    <h3>{{ order.store.storeName }}</h3>
 
-    </button>
+                    <p>
 
-    <button
-        *ngIf="order.status=='In Transit'"
-        (click)="updateStatus(order,'Delivered')">
+                        <strong>Customer:</strong>
 
-        Mark Delivered
+                        {{ order.customer.fullname }}
 
-    </button>
+                    </p>
 
-</div>
+                    <p>
+
+                        <strong>Address:</strong>
+
+                        {{ order.deliveryAddress }}
+
+                    </p>
+
+                    <h2 class="price">
+
+                        ₱{{ order.total }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <button
+                class="accept-btn"
+                (click)="accept(order)">
+
+                🚚 Accept Delivery
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- MY DELIVERIES -->
+
+    <section>
+
+        <h2>🛵 My Deliveries</h2>
+
+        <div class="empty" *ngIf="myOrders.length==0">
+
+            No active deliveries.
+
+        </div>
+
+        <div class="order-card" *ngFor="let order of myOrders">
+
+            <div class="card-top">
+
+                <div>
+
+                    <h3>{{ order.store.storeName }}</h3>
+
+                    <p>{{ order.customer.fullname }}</p>
+
+                </div>
+
+                <span
+                    class="status"
+
+                    [ngClass]="{
+
+                        pickup: order.status=='Picked Up',
+
+                        transit: order.status=='In Transit',
+
+                        delivered: order.status=='Delivered'
+
+                    }">
+
+                    {{ order.status }}
+
+                </span>
+
+            </div>
+
+            <p>
+
+                <strong>Delivery Address:</strong>
+
+                {{ order.deliveryAddress }}
+
+            </p>
+
+            <div class="actions">
+
+                <button
+                    class="map-btn"
+                    (click)="viewMap(order)">
+
+                    🗺 View Map
+
+                </button>
+
+                <button
+                    class="update-btn"
+                    *ngIf="order.status=='Picked Up'"
+                    (click)="updateStatus(order,'In Transit')">
+
+                    Mark In Transit
+
+                </button>
+
+                <button
+                    class="update-btn"
+                    *ngIf="order.status=='In Transit'"
+                    (click)="updateStatus(order,'Delivered')">
+
+                    Mark Delivered
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div
+        class="map-section"
+        *ngIf="selectedOrder">
+
+        <h2>📍 Delivery Route</h2>
+
+        <app-delivery-map
+
+            [storeLat]="selectedOrder.store.latitude"
+
+            [storeLng]="selectedOrder.store.longitude"
+
+            [customerLat]="selectedOrder.deliveryLatitude"
+
+            [customerLng]="selectedOrder.deliveryLongitude">
+
+        </app-delivery-map>
+
+    </div>
 
 </div>

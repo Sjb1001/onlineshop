@@ -1,67 +1,128 @@
-<div class="container">
+<div class="checkout-page">
 
-<h2>Checkout</h2>
+    <h1>🛍 Checkout</h1>
 
-<hr>
+    <div class="checkout-grid">
 
-<table>
+        <!-- LEFT SIDE -->
+        <div class="checkout-left">
 
-<tr>
+            <div class="card">
 
-<th>Product</th>
+                <h2>Order Items</h2>
 
-<th>Price</th>
+                <div
+                    class="product-item"
+                    *ngFor="let item of cartItems">
 
-</tr>
+                    <img
+                        [src]="item.product.image ? 'http://localhost:3000'+item.product.image : 'assets/no-image.png'">
 
-<tr *ngFor="let item of cartItems">
+                    <div class="product-info">
 
-<td>{{ item.productName }}</td>
+                        <h3>{{ item.product.productName }}</h3>
 
-<td>₱{{ item.price }}</td>
+                        <p>
 
-</tr>
+                            Quantity: {{ item.quantity }}
 
-</table>
+                        </p>
 
-<h3>Total: ₱{{ total }}</h3>
+                    </div>
 
-<div class="form-group">
+                    <div class="product-price">
 
-    <label>Delivery Address</label>
+                        ₱{{ item.product.price * item.quantity }}
 
-    <input
-        type="text"
-        [(ngModel)]="deliveryAddress">
+                    </div>
 
-</div>
+                </div>
 
-<div class="form-group">
+            </div>
 
-    <label>Latitude</label>
+            <div class="card">
 
-    <input
-        type="number"
-        [(ngModel)]="deliveryLatitude">
+                <h2>Delivery Information</h2>
 
-</div>
+                <label>Delivery Address</label>
 
-<div class="form-group">
+                <input
+                    type="text"
+                    [(ngModel)]="deliveryAddress"
+                    placeholder="Enter complete delivery address">
 
-    <label>Longitude</label>
+                <button
+    class="location-btn"
+    (click)="getCurrentLocation()">
 
-    <input
-        type="number"
-        [(ngModel)]="deliveryLongitude">
-
-</div>
-
-<br>
-
-<button (click)="placeOrder()">
-
-Place Order
+    📍 Use My Current Location
 
 </button>
+
+<p *ngIf="deliveryLatitude">
+
+    Current Location Selected ✔
+
+</p>
+
+<div id="checkoutMap"></div>
+
+
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="checkout-right">
+
+            <div class="summary-card">
+
+                <h2>Order Summary</h2>
+
+                <div class="row">
+
+                    <span>Subtotal</span>
+
+                    <span>₱{{ total }}</span>
+
+                </div>
+
+                <div class="row">
+
+                    <span>Delivery Fee</span>
+
+                    <span>FREE</span>
+
+                </div>
+
+                <hr>
+
+                <div class="total">
+
+                    <span>Total</span>
+
+                    <strong>
+
+                        ₱{{ total }}
+
+                    </strong>
+
+                </div>
+
+                <button
+                    class="checkout-btn"
+                    (click)="placeOrder()">
+
+                    Place Order
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>

@@ -22,3 +22,5 @@ import { MatListModule } from '@angular/material/list';
   ]
 })
 export class CartModule { }
+
+// Note: harmless comment added to force editor/TS server refresh

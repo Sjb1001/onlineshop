@@ -1,68 +1,151 @@
-<h1 style="color:red">SELLER ORDERS COMPONENT LOADED</h1>
+<div class="orders-page">
 
-<p>Total Orders: {{ orders.length }}</p>
+    <div class="page-header">
 
-<div class="container">
+        <div>
 
-    <h2>Store Orders</h2>
+            <h1>📦 Store Orders</h1>
 
-    <div *ngFor="let order of orders" class="order-card">
+            <p>Manage customer orders and update their status.</p>
 
-        <h3>Customer: {{ order.customer.fullname }}</h3>
+        </div>
 
-        <div class="status-section">
+        <div class="order-count">
 
-    <label><strong>Status</strong></label>
+            {{ orders.length }} Orders
 
-    <select
-    [(ngModel)]="order.status"
-    [disabled]="order.status === 'Cancelled'">
+        </div>
 
-        <option value="Pending">Pending</option>
+    </div>
 
-        <option value="Preparing">Preparing</option>
+    <div *ngIf="orders.length == 0" class="empty">
 
-        <option value="Ready for Pickup">Ready for Pickup</option>
+        <h2>No orders yet.</h2>
 
-        <option value="Shipped">Shipped</option>
+        <p>Orders from customers will appear here.</p>
 
-        <option value="Delivered">Delivered</option>
+    </div>
 
-    </select>
+    <div
+        class="order-card"
+        *ngFor="let order of orders">
 
-    <button
-    mat-raised-button
-    color="primary"
-    (click)="updateStatus(order)"
-    [disabled]="order.status === 'Cancelled'">
+        <div class="card-header">
 
-    Update Status
+            <div>
 
-</button>
+                <h2>
 
-</div>
+                    👤 {{ order.customer.fullname }}
 
-        <p>
-            <strong>Total:</strong>
-            ₱{{ order.total }}
-        </p>
+                </h2>
 
-        <hr>
+                <p>
 
-        <div *ngFor="let item of order.items">
+                    {{ order.createdAt | date:'medium' }}
 
-            <img
-                [src]="item.product.image ? 'http://localhost:3000' + item.product.image : 'assets/images/no-image.png'"
-                width="80"
-            >
+                </p>
 
-            <p>{{ item.product.productName }}</p>
+            </div>
 
-            <p>Quantity: {{ item.quantity }}</p>
+            <div
+                class="status"
 
-            <p>₱{{ item.price }}</p>
+                [ngClass]="{
 
-            <br>
+                    pending: order.status=='Pending',
+
+                    preparing: order.status=='Preparing',
+
+                    pickup: order.status=='Ready for Pickup',
+
+                    shipped: order.status=='Shipped',
+
+                    delivered: order.status=='Delivered',
+
+                    cancelled: order.status=='Cancelled'
+
+                }">
+
+                {{ order.status }}
+
+            </div>
+
+        </div>
+
+        <div class="products">
+
+            <div
+                class="product"
+
+                *ngFor="let item of order.items">
+
+                <img
+                    [src]="item.product.image ? 'http://localhost:3000'+item.product.image : 'assets/no-image.png'">
+
+                <div class="info">
+
+                    <h3>{{ item.product.productName }}</h3>
+
+                    <p>Quantity: {{ item.quantity }}</p>
+
+                </div>
+
+                <div class="price">
+
+                    ₱{{ item.price }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bottom">
+
+            <div class="total">
+
+                Total
+
+                <strong>
+
+                    ₱{{ order.total }}
+
+                </strong>
+
+            </div>
+
+            <div class="actions">
+
+                <select
+                    [(ngModel)]="order.status"
+                    [disabled]="order.status=='Cancelled'">
+
+                    <option value="Pending">Pending</option>
+
+                    <option value="Preparing">Preparing</option>
+
+                    <option value="Ready for Pickup">Ready for Pickup</option>
+
+                    <option value="Shipped">Shipped</option>
+
+                    <option value="Delivered">Delivered</option>
+
+                </select>
+
+                <button
+
+                    class="update-btn"
+
+                    (click)="updateStatus(order)"
+
+                    [disabled]="order.status=='Cancelled'">
+
+                    Update Status
+
+                </button>
+
+            </div>
 
         </div>
 

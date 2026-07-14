@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../services/order.service';
+import { DeliveryMapComponent } from '../../shared/delivery-map/delivery-map.component';
 
 @Component({
   selector: 'app-courier-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DeliveryMapComponent],
   templateUrl: './courier-dashboard.component.html',
-  styleUrls: ['./courier-dashboard.component.css']
+  styleUrls: ['./courier-dashboard.component.css'],
 })
 export class CourierDashboardComponent implements OnInit {
 
@@ -16,6 +17,8 @@ export class CourierDashboardComponent implements OnInit {
   myOrders: any[] = [];
 
   courierId = "";
+
+  selectedOrder: any = null;
 
   constructor(private orderService: OrderService) {}
 
@@ -86,5 +89,13 @@ export class CourierDashboardComponent implements OnInit {
     });
 
   }
+
+  viewMap(order: any) {
+
+  this.selectedOrder = order;
+
+  console.log(this.selectedOrder);
+
+}
 
 }

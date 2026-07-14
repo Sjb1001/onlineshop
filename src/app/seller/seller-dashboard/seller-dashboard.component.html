@@ -1,98 +1,129 @@
 <div class="dashboard">
 
-    <h1>Seller Dashboard</h1>
+    <div class="header">
 
-    <p class="welcome">
-        Welcome,
-        <strong>{{ fullname }}</strong>
-    </p>
+        <div>
 
-    <div class="card">
-
-        <h2>🏪 My Store</h2>
-
-        <div *ngIf="store; else noStore">
-
+            <h1>🏪 Seller Dashboard</h1>
 
             <p>
-                <strong>Name:</strong>
-                {{ store.storeName }}
+
+                Welcome back,
+
+                <strong>{{ fullname }}</strong>
+
             </p>
-
-            <p>
-                <strong>Status:</strong>
-                {{ store.status }}
-            </p>
-
-            <hr>
-
-<h3>Allowed Categories</h3>
-
-<div *ngIf="store.allowedCategories?.length > 0; else noCategories">
-
-    <ul>
-
-        <li *ngFor="let category of store.allowedCategories">
-
-            {{ category.name }}
-
-        </li>
-
-    </ul>
-
-</div>
-
-<ng-template #noCategories>
-
-    <p>No categories have been assigned yet.</p>
-
-</ng-template>
-
-            <br>
-
-            <button
-                routerLink="/seller/add-product"
-                *ngIf="store.status === 'approved'">
-
-                ➕ Add Product
-
-            </button>
-
-            <button
-    routerLink="/seller/my-products"
-    *ngIf="store.status === 'approved'">
-
-    📦 My Products
-
-</button>
-
-<button
-    mat-raised-button
-    color="accent"
-    routerLink="/seller/orders"
-    *ngIf="store.status === 'approved'">
-
-    📦 Orders
-
-</button>
-
-<button
-    mat-raised-button
-    color="primary"
-    routerLink="/seller/inbox"
-    *ngIf="store.status === 'approved'">
-
-    💬 Customer Inbox
-
-</button>
 
         </div>
 
-        <ng-template #noStore>
+    </div>
 
-            <p>
-                You don't have a store yet.
+    <div *ngIf="store; else noStore">
+
+        <!-- STORE INFO -->
+
+        <div class="store-card">
+
+            <div>
+
+                <h2>{{ store.storeName }}</h2>
+
+                <p>
+
+                    Store Status
+
+                </p>
+
+            </div>
+
+            <span
+                class="badge"
+                [ngClass]="store.status">
+
+                {{ store.status }}
+
+            </span>
+
+        </div>
+
+        <!-- QUICK ACTIONS -->
+
+        <div
+            class="actions"
+            *ngIf="store.status=='approved'">
+
+            <button routerLink="/seller/add-product">
+
+                ➕
+                <span>Add Product</span>
+
+            </button>
+
+            <button routerLink="/seller/my-products">
+
+                📦
+                <span>My Products</span>
+
+            </button>
+
+            <button routerLink="/seller/orders">
+
+                🧾
+                <span>Orders</span>
+
+            </button>
+
+            <button routerLink="/seller/inbox">
+
+                💬
+                <span>Messages</span>
+
+            </button>
+
+        </div>
+
+        <!-- CATEGORY CARD -->
+
+        <div class="categories-card">
+
+            <h2>
+
+                Allowed Categories
+
+            </h2>
+
+            <div
+                class="chips"
+                *ngIf="store.allowedCategories?.length>0">
+
+                <span
+                    *ngFor="let category of store.allowedCategories">
+
+                    {{ category.name }}
+
+                </span>
+
+            </div>
+
+            <p *ngIf="store.allowedCategories?.length==0">
+
+                No categories assigned yet.
+
             </p>
+
+        </div>
+
+    </div>
+
+    <ng-template #noStore>
+
+        <div class="no-store">
+
+            <h2>
+
+                You don't have a store yet.
+
+            </h2>
 
             <button routerLink="/seller/create-store">
 
@@ -100,8 +131,8 @@
 
             </button>
 
-        </ng-template>
+        </div>
 
-    </div>
+    </ng-template>
 
 </div>

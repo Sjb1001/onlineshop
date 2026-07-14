@@ -12,8 +12,16 @@ export class OrderService {
   constructor(private http: HttpClient) { }
 
   placeOrder(order: any) {
-    return this.http.post(this.apiUrl, order);
-  }
+
+  return this.http.post(
+
+    this.apiUrl + "/checkout",
+
+    order
+
+  );
+
+}
 
   getCustomerOrders(customerId: string) {
     return this.http.get(this.apiUrl + "/customer/" + customerId);
@@ -41,16 +49,6 @@ cancelOrder(orderId: string) {
     {}
 
   );
-
-}
-
-  checkout(customer: string) {
-
-  return this.http.post(this.apiUrl + "/checkout", {
-
-    customer
-
-  });
 
 }
 

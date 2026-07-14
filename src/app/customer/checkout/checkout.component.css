@@ -1,0 +1,208 @@
+.checkout-page{
+
+    max-width:1300px;
+
+    margin:auto;
+
+    padding:50px 30px;
+
+    background:#F5F5F7;
+
+    min-height:100vh;
+
+}
+
+.checkout-page h1{
+
+    margin-bottom:35px;
+
+    color:#6A1B9A;
+
+}
+
+.checkout-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:30px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+
+}
+
+.product-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:20px;
+
+}
+
+.product-item img{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+}
+
+.product-info{
+
+    flex:1;
+
+}
+
+.product-price{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#6A1B9A;
+
+}
+
+label{
+
+    display:block;
+
+    margin-top:20px;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+}
+
+.location-btn{
+
+    margin-top:20px;
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    background:#EEEEEE;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.summary-card{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    position:sticky;
+
+    top:20px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+
+}
+
+.row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:18px 0;
+
+}
+
+.total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:24px;
+
+    margin:25px 0;
+
+}
+
+.checkout-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#6A1B9A;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.checkout-btn:hover{
+
+    background:#7B1FA2;
+
+}
+#checkoutMap{
+
+    margin-top:20px;
+
+    width:100%;
+
+    height:350px;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+}

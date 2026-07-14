@@ -1,92 +1,117 @@
-<div class="container" *ngIf="store">
+<div class="add-product-page" *ngIf="store">
 
-    <h1>Add Product</h1>
+    <div class="form-card">
 
-    <hr>
+        <h1>📦 Add Product</h1>
 
-    <p>
-        <strong>Store:</strong>
-        {{ store.storeName }}
-    </p>
+        <p class="subtitle">
 
-    <br>
+            Store:
+            <strong>{{ store.storeName }}</strong>
 
-    <div class="form-group">
+        </p>
 
-        <label>Product Name</label>
+        <div class="image-upload">
 
-        <input
-            type="text"
-            [(ngModel)]="product.productName">
+            <label>Product Image</label>
+
+            <input
+                type="file"
+                (change)="onFileSelected($event)">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Product Name</label>
+
+            <input
+                type="text"
+                placeholder="Enter product name"
+                [(ngModel)]="product.productName">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Description</label>
+
+            <textarea
+
+                rows="5"
+
+                placeholder="Describe your product"
+
+                [(ngModel)]="product.description">
+
+            </textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Category</label>
+
+            <select [(ngModel)]="product.category">
+
+                <option value="">
+
+                    Select Category
+
+                </option>
+
+                <option
+
+                    *ngFor="let category of categories"
+
+                    [value]="category._id">
+
+                    {{ category.name }}
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="two-column">
+
+            <div class="form-group">
+
+                <label>Price (₱)</label>
+
+                <input
+
+                    type="number"
+
+                    [(ngModel)]="product.price">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Stock</label>
+
+                <input
+
+                    type="number"
+
+                    [(ngModel)]="product.stock">
+
+            </div>
+
+        </div>
+
+        <button
+
+            class="save-btn"
+
+            (click)="saveProduct()">
+
+            ➕ Save Product
+
+        </button>
 
     </div>
-
-    <div class="form-group">
-
-        <label>Description</label>
-
-        <textarea
-            rows="4"
-            [(ngModel)]="product.description"></textarea>
-
-    </div>
-
-    <div class="form-group">
-
-        <label>Category</label>
-
-        <select [(ngModel)]="product.category">
-
-            <option value="">Select Category</option>
-
-            <option
-                *ngFor="let category of categories"
-                [value]="category._id">
-
-                {{ category.name }}
-
-            </option>
-
-        </select>
-
-    </div>
-
-    <div class="form-group">
-
-        <label>Price</label>
-
-        <input
-            type="number"
-            [(ngModel)]="product.price">
-
-    </div>
-
-    <div class="form-group">
-
-        <label>Stock</label>
-
-        <input
-            type="number"
-            [(ngModel)]="product.stock">
-
-    </div>
-
-    <div class="form-group">
-
-    <label>Product Image</label>
-
-    <input
-        type="file"
-        (change)="onFileSelected($event)">
-
-</div>
-
-    <br>
-
-    <button (click)="saveProduct()">
-
-        Save Product
-
-    </button>
 
 </div>

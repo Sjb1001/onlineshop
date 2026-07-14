@@ -73,4 +73,84 @@ router.post("/login", async (req, res) => {
 });
 
 console.log("✅ Auth routes loaded");
+
+// Get all sellers
+router.get("/sellers", async (req, res) => {
+
+  try {
+
+    const sellers = await User.find({
+      role: "seller"
+    }).select("-password");
+
+    res.json(sellers);
+
+  } catch (err) {
+
+    res.status(500).json({
+      message: err.message
+    });
+
+  }
+
+});
+
+router.get("/sellers", async (req, res) => {
+
+    try {
+
+        const sellers = await User.find({
+
+            role: "seller"
+
+        }).select("-password");
+
+        res.json(sellers);
+
+    }
+
+    catch(err){
+
+        res.status(500).json({
+
+            message: err.message
+
+        });
+
+    }
+
+});
+
+router.put("/status/:id", async (req, res) => {
+
+    try {
+
+        const { status } = req.body;
+
+        const seller = await User.findByIdAndUpdate(
+
+            req.params.id,
+
+            { status },
+
+            { new: true }
+
+        );
+
+        res.json(seller);
+
+    }
+
+    catch(err){
+
+        res.status(500).json({
+
+            message: err.message
+
+        });
+
+    }
+
+});
+
 module.exports = router;

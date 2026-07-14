@@ -11,6 +11,9 @@ export class CreateStoreComponent {
   description: string = '';
   address: string = '';
 
+  latitude: number | null = null;
+longitude: number | null = null;
+
   constructor(private storeService: StoreService) {}
 
   createStore(): void {
@@ -26,12 +29,20 @@ export class CreateStoreComponent {
 console.log("Owner from localStorage:", owner);
 
 const storeData = {
-  owner: owner,
-  storeName: this.storeName,
-  description: this.description,
-  address: this.address
-};
 
+  owner,
+
+  storeName: this.storeName,
+
+  description: this.description,
+
+  address: this.address,
+
+  latitude: this.latitude,
+
+  longitude: this.longitude
+
+};
 console.log("Sending to backend:", storeData);
 
     this.storeService.createStore(storeData).subscribe({

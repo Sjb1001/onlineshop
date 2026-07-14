@@ -22,6 +22,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["customer", "seller", "admin", "courier"],
         default: "customer"
+    },
+
+    status: {
+        type: String,
+        enum: ["Active", "Inactive"],
+        default: "Active"
     }
 
 });

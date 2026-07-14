@@ -1,25 +1,255 @@
-.container{
+.orders-page{
 
-    width:80%;
+    max-width:1200px;
+
     margin:auto;
-    padding:20px;
+
+    padding:40px 25px;
+
+    background:#F5F5F7;
+
+    min-height:100vh;
+
+}
+
+.page-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.page-header h1{
+
+    color:#6A1B9A;
+
+}
+
+.page-header p{
+
+    color:#777;
+
+}
+
+.order-count{
+
+    background:#6A1B9A;
+
+    color:white;
+
+    padding:12px 22px;
+
+    border-radius:30px;
+
+    font-weight:bold;
 
 }
 
 .order-card{
 
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:20px;
-    margin-bottom:20px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
+    background:white;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
 
 }
 
-img{
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.card-header h2{
+
+    margin:0;
+
+}
+
+.card-header p{
+
+    color:#777;
+
+}
+
+.status{
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+.pending{
+
+    background:#FB8C00;
+
+}
+
+.preparing{
+
+    background:#42A5F5;
+
+}
+
+.pickup{
+
+    background:#8E24AA;
+
+}
+
+.shipped{
+
+    background:#039BE5;
+
+}
+
+.delivered{
+
+    background:#43A047;
+
+}
+
+.cancelled{
+
+    background:#E53935;
+
+}
+
+.products{
+
+    margin:20px 0;
+
+}
+
+.product{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.product img{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+}
+
+.info{
+
+    flex:1;
+
+}
+
+.price{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#EE4D2D;
+
+}
+
+.bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:25px;
+
+}
+
+.total{
+
+    font-size:22px;
+
+}
+
+.actions{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+select{
+
+    padding:12px;
 
     border-radius:8px;
 
-    margin-bottom:10px;
+    border:1px solid #ddd;
+
+}
+
+.update-btn{
+
+    background:#6A1B9A;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.update-btn:hover{
+
+    background:#7B1FA2;
+
+}
+
+.empty{
+
+    background:white;
+
+    padding:80px;
+
+    text-align:center;
+
+    border-radius:16px;
 
 }

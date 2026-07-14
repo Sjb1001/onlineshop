@@ -133,7 +133,10 @@ router.get("/customer/:id", async (req, res) => {
 
         .populate("items.product")
 
-        .populate("store", "storeName");
+        .populate(
+    "store",
+    "storeName latitude longitude address"
+)
 
         res.json(orders);
 
@@ -359,7 +362,7 @@ router.get("/courier/:courierId", async (req, res) => {
 
         })
         .populate("customer", "fullname")
-        .populate("store", "storeName")
+        .populate("store", "storeName latitude longitude address")
         .populate("items.product");
 
         res.json(orders);
