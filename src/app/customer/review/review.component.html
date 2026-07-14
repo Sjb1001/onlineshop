@@ -1,57 +1,49 @@
-<div class="container">
+<div class="review-page">
 
-    <h2>Write a Review</h2>
+    <div class="review-card">
 
-    <label>
+        <h1>⭐ Write a Review</h1>
 
-        Rating
+        <p class="subtitle">
+            Share your experience with this product.
+        </p>
 
-    </label>
+        <div class="form-group">
 
-    <br>
+            <label>Rating</label>
 
-    <select [(ngModel)]="rating">
+            <select [(ngModel)]="rating">
 
-        <option [value]="5">⭐⭐⭐⭐⭐ (5)</option>
+                <option [value]="5">⭐⭐⭐⭐⭐ Excellent (5)</option>
+                <option [value]="4">⭐⭐⭐⭐ Very Good (4)</option>
+                <option [value]="3">⭐⭐⭐ Good (3)</option>
+                <option [value]="2">⭐⭐ Fair (2)</option>
+                <option [value]="1">⭐ Poor (1)</option>
 
-        <option [value]="4">⭐⭐⭐⭐ (4)</option>
+            </select>
 
-        <option [value]="3">⭐⭐⭐ (3)</option>
+        </div>
 
-        <option [value]="2">⭐⭐ (2)</option>
+        <div class="form-group">
 
-        <option [value]="1">⭐ (1)</option>
+            <label>Comment</label>
 
-    </select>
+            <textarea
+                rows="6"
+                placeholder="Tell other buyers about your experience..."
+                [(ngModel)]="comment">
+            </textarea>
 
-    <br><br>
+        </div>
 
-    <label>
+        <button
+            class="submit-btn"
+            (click)="submitReview()">
 
-        Comment
+            ⭐ Submit Review
 
-    </label>
+        </button>
 
-    <br>
-
-    <textarea
-
-        rows="5"
-
-        cols="40"
-
-        [(ngModel)]="comment">
-
-    </textarea>
-
-    <br><br>
-
-    <button
-
-        (click)="submitReview()">
-
-        Submit Review
-
-    </button>
+    </div>
 
 </div>

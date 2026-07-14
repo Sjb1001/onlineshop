@@ -34,6 +34,45 @@
 
 </select>
 
+<div class="form-group">
+
+    <label>Security Question</label>
+
+    <select [(ngModel)]="securityQuestion">
+
+        <option value="">Select a question</option>
+
+        <option value="What is your favorite color?">
+            What is your favorite color?
+        </option>
+
+        <option value="What is your favorite food?">
+            What is your favorite food?
+        </option>
+
+        <option value="What is your first pet's name?">
+            What is your first pet's name?
+        </option>
+
+        <option value="What city were you born in?">
+            What city were you born in?
+        </option>
+
+    </select>
+
+</div>
+
+<div class="form-group">
+
+    <label>Security Answer</label>
+
+    <input
+        type="text"
+        [(ngModel)]="securityAnswer"
+        placeholder="Enter your answer">
+
+</div>
+
     <button (click)="register()">
       Register
     </button>

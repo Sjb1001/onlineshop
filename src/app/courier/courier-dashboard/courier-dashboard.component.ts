@@ -94,7 +94,9 @@ export class CourierDashboardComponent implements OnInit {
 
   this.selectedOrder = order;
 
-  console.log(this.selectedOrder);
+  console.log("Store:", order.store);
+  console.log("Latitude:", order.store.latitude);
+  console.log("Longitude:", order.store.longitude);
 
 }
 

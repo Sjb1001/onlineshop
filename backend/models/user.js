@@ -28,7 +28,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["Active", "Inactive"],
         default: "Active"
-    }
+    },
+
+    securityQuestion: {
+    type: String,
+    default: ""
+},
+
+securityAnswer: {
+    type: String,
+    default: ""
+},
 
 });
 

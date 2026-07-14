@@ -4,6 +4,9 @@ const router = express.Router();
 const Review = require("../models/Review");
 
 router.post("/", async (req, res) => {
+  
+   console.log("Review request received");
+    console.log(req.body);
 
     try {
 
@@ -100,6 +103,6 @@ router.get("/product/:productId/average", async (req, res) => {
 
     }
 
-}); 
+});
 
 module.exports = router;

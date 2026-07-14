@@ -26,6 +26,7 @@ import { SellerChatComponent } from './seller/seller-chat/seller-chat.component'
 import { CustomerInboxComponent } from './customer/customer-inbox/customer-inbox.component';
 import { CourierDashboardComponent } from './courier/courier-dashboard/courier-dashboard.component';
 import { DeliveryMapComponent } from './shared/delivery-map/delivery-map.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -114,7 +115,12 @@ const routes: Routes = [
 {
   path: 'courier/map/:orderId',
   component: DeliveryMapComponent
-}
+},
+
+{
+  path: 'forgot-password',
+  component: ForgotPasswordComponent
+},
 
 ];
 

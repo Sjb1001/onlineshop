@@ -135,4 +135,38 @@ router.put("/:id/decrease", async (req, res) => {
 
 });
 
+router.put("/:id", async (req, res) => {
+
+    try {
+
+        const category = await Category.findByIdAndUpdate(
+
+            req.params.id,
+
+            {
+                name: req.body.name
+            },
+
+            {
+                new: true
+            }
+
+        );
+
+        res.json(category);
+
+    }
+
+    catch(err){
+
+        res.status(500).json({
+
+            message: err.message
+
+        });
+
+    }
+
+});
+
 module.exports = router;

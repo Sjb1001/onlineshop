@@ -13,6 +13,8 @@ export class RegisterComponent {
   email = "";
   password = "";
   role = "customer";
+  securityQuestion = "";
+  securityAnswer = "";
 
   constructor(
     private authService: AuthService,
@@ -27,7 +29,9 @@ export class RegisterComponent {
     fullname: this.fullname,
     email: this.email,
     password: this.password,
-    role: this.role
+    role: this.role,
+    securityQuestion: this.securityQuestion,
+    securityAnswer: this.securityAnswer
   };
 
   console.log("Sending user:", user);

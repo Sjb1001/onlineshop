@@ -1,3 +1,4 @@
+console.log("✅ Review routes loaded");
 const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({

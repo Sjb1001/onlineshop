@@ -83,7 +83,7 @@ export class MyOrdersComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['/review'], {
+    this.router.navigate(['customer/review'], {
       queryParams: { productId: product._id }
     });
   }

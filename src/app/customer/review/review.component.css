@@ -1,23 +1,111 @@
-.container{
+.review-page{
 
-    width:500px;
-
-    margin:auto;
-
-    margin-top:40px;
+    max-width:700px;
+    margin:50px auto;
+    padding:20px;
 
 }
 
-textarea{
+.review-card{
+
+    background:#fff;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.review-card h1{
+
+    color:#6A1B9A;
+    margin-bottom:8px;
+    font-size:30px;
+
+}
+
+.subtitle{
+
+    color:#777;
+    margin-bottom:30px;
+
+}
+
+.form-group{
+
+    margin-bottom:25px;
+
+}
+
+.form-group label{
+
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+    color:#444;
+
+}
+
+.form-group select,
+.form-group textarea{
 
     width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+    transition:.2s;
 
 }
 
-button{
+.form-group select:focus,
+.form-group textarea:focus{
 
-    padding:10px 20px;
+    outline:none;
+    border-color:#6A1B9A;
+    box-shadow:0 0 8px rgba(106,27,154,.15);
 
+}
+
+.form-group textarea{
+
+    resize:vertical;
+
+}
+
+.submit-btn{
+
+    width:100%;
+    background:#6A1B9A;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:15px;
+    font-size:16px;
+    font-weight:bold;
     cursor:pointer;
+    transition:.25s;
+
+}
+
+.submit-btn:hover{
+
+    background:#7B1FA2;
+    transform:translateY(-2px);
+
+}
+
+.submit-btn:active{
+
+    transform:scale(.98);
+
+}
+
+@media(max-width:768px){
+
+    .review-card{
+
+        padding:25px;
+
+    }
 
 }

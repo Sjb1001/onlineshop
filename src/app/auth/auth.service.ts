@@ -10,7 +10,7 @@ export class AuthService {
 
   private apiUrl = environment.apiUrl + "/auth";
 
-  constructor(private http: HttpClient) { console.log(environment.apiUrl); }
+  constructor(private http: HttpClient) {}
 
   register(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, user);
@@ -19,4 +19,28 @@ export class AuthService {
   login(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, user);
   }
+
+  // Forgot Password
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgot-password`, {
+      email
+    });
+  }
+
+  // Verify Security Answer
+  verifyAnswer(email: string, answer: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/verify-answer`, {
+      email,
+      answer
+    });
+  }
+
+  // Reset Password
+  resetPassword(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reset-password`, {
+      email,
+      password
+    });
+  }
+
 }

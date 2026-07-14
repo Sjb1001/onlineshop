@@ -41,6 +41,8 @@ export class DeliveryMapComponent implements OnChanges {
   }
 
   loadMap() {
+     console.log("Store:", this.storeLat, this.storeLng);
+  console.log("Customer:", this.customerLat, this.customerLng);
 
     if (this.map) {
 
@@ -113,6 +115,11 @@ export class DeliveryMapComponent implements OnChanges {
       ]
 
     ]);
+    setTimeout(() => {
+
+  this.map.invalidateSize();
+
+}, 100);
 
     this.map.fitBounds(bounds);
 

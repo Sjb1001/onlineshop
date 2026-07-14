@@ -35,15 +35,35 @@ export class ReviewComponent {
 
     this.route.queryParams.subscribe(params => {
 
-      this.productId = params['product'];
+  this.productId = params['productId'];
 
-    });
+  console.log("Product ID:", this.productId);
+
+});
 
   }
 
+
+
   submitReview() {
 
+    if (!this.productId) {
+
+    alert("Product ID not found.");
+
+    return;
+
+  }
+
     const customerId = localStorage.getItem("userId");
+
+     if (!customerId) {
+
+    alert("Please login first.");
+
+    return;
+
+  }
 
     const review = {
 

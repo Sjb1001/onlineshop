@@ -29,6 +29,26 @@
 
             </button>
 
+            <button
+
+    *ngIf="editing"
+
+    (click)="updateCategory()">
+
+    Update Category
+
+</button>
+
+<button
+
+    *ngIf="editing"
+
+    (click)="editing=false; name=''">
+
+    Cancel
+
+</button>
+
         </div>
 
     </div>
@@ -47,7 +67,7 @@
 
                     <th>Category</th>
 
-                    <th width="180">Action</th>
+                    <th class="action-column">Action</th>
 
                 </tr>
 
@@ -63,17 +83,32 @@
 
                     </td>
 
-                    <td>
 
-                        <button
-                            class="delete-btn"
-                            (click)="deleteCategory(category._id)">
+                      <td>
 
-                            🗑 Delete
+    <div class="action-buttons">
 
-                        </button>
+        <button
+            class="edit-btn"
+            (click)="editCategory(category)">
 
-                    </td>
+            ✏ Edit
+
+        </button>
+
+        <button
+            class="delete-btn"
+            (click)="deleteCategory(category._id)">
+
+            🗑 Delete
+
+        </button>
+
+    </div>
+
+</td>
+
+
 
                 </tr>
 

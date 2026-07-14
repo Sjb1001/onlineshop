@@ -31,6 +31,7 @@ import { SellerChatComponent } from './seller/seller-chat/seller-chat.component'
 import { CustomerInboxComponent } from './customer/customer-inbox/customer-inbox.component';
 import { CourierDashboardComponent } from './courier/courier-dashboard/courier-dashboard.component';
 import { DeliveryMapComponent } from './shared/delivery-map/delivery-map.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { DeliveryMapComponent } from './shared/delivery-map/delivery-map.compone
     AddProductComponent,
     MyProductsComponent,
     EditProductComponent,
+    ForgotPasswordComponent,
 
 
   ],
