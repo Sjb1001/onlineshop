@@ -1,4 +1,5 @@
   import { Component } from '@angular/core';
+  import { Router } from '@angular/router';
   import { ForgotPasswordService } from '../../services/forgot-password.service';
 
   @Component({
@@ -18,8 +19,10 @@
 
     newPassword = "";
 
+    confirmPassword = ""; // Track confirm password input
+
     constructor(
-      private forgotService: ForgotPasswordService
+      private forgotService: ForgotPasswordService, private router: Router
     ) {}
 
     getQuestion() {
@@ -80,7 +83,42 @@
   }
 
     resetPassword() {
+    console.log("Change Password button clicked");
 
+    // Check if fields are empty
+    if (!this.newPassword || !this.confirmPassword) {
+      alert("Please fill out both password fields.");
+      return;
     }
 
+    // Check if passwords match
+    if (this.newPassword !== this.confirmPassword) {
+      alert("Passwords do not match. Please try again.");
+      return;
+    }
+
+    // Send payload to your Node/Express server targeting MongoDB
+    this.forgotService.resetPassword({
+      email: this.email,
+      newPassword: this.newPassword
+    }).subscribe({
+      next: (res: any) => {
+        alert("Password changed successfully!");
+
+        // Reset the form values
+        this.newPassword = "";
+        this.confirmPassword = "";
+        this.email = "";
+        this.securityAnswer = "";
+        this.step = 1;
+
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.log(err);
+        alert(err.error?.message || "An error occurred while resetting your password.");
+      }
+    });
+
   }
+}

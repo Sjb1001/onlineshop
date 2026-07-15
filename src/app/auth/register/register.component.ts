@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../state/auth.actions';
 
 @Component({
   selector: 'app-register',
@@ -16,38 +16,22 @@ export class RegisterComponent {
   securityQuestion = "";
   securityAnswer = "";
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private store: Store) { }
 
   register() {
+    console.log("Selected role:", this.role);
 
-  console.log("Selected role:", this.role);
+    const user = {
+      fullname: this.fullname,
+      email: this.email,
+      password: this.password,
+      role: this.role,
+      securityQuestion: this.securityQuestion,
+      securityAnswer: this.securityAnswer
+    };
 
-  const user = {
-    fullname: this.fullname,
-    email: this.email,
-    password: this.password,
-    role: this.role,
-    securityQuestion: this.securityQuestion,
-    securityAnswer: this.securityAnswer
-  };
+    console.log("Sending user via NgRx:", user);
 
-  console.log("Sending user:", user);
-
-  this.authService.register(user).subscribe({
-    next: () => {
-      alert("Registration Successful!");
-      this.router.navigate(['/login']);
-    },
-
-    error: (err) => {
-      console.log(err);
-      console.log(err.error);
-      alert(err.error.message);
-    }
-  });
-
-}
+    this.store.dispatch(AuthActions.register({ userData: user }));
+  }
 }

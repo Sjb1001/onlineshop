@@ -97,32 +97,6 @@ router.get("/sellers", async (req, res) => {
 
 });
 
-router.get("/sellers", async (req, res) => {
-
-    try {
-
-        const sellers = await User.find({
-
-            role: "seller"
-
-        }).select("-password");
-
-        res.json(sellers);
-
-    }
-
-    catch(err){
-
-        res.status(500).json({
-
-            message: err.message
-
-        });
-
-    }
-
-});
-
 router.put("/status/:id", async (req, res) => {
 
     try {
@@ -250,4 +224,31 @@ router.post("/verify-answer", async (req, res) => {
 
 });
 
+// ==========================
+// Reset Password
+// ==========================
+router.post("/reset-password", async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    // Find the user in MongoDB
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    // Encrypt the new password before saving
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the password field
+    user.password = hashedPassword;
+    await user.save();
+
+    res.json({ message: "Password updated successfully!" });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
+});
 module.exports = router;

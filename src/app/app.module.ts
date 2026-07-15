@@ -32,6 +32,16 @@ import { CustomerInboxComponent } from './customer/customer-inbox/customer-inbox
 import { CourierDashboardComponent } from './courier/courier-dashboard/courier-dashboard.component';
 import { DeliveryMapComponent } from './shared/delivery-map/delivery-map.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+// NgRx Core Imports
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+// NgRx Authentication State Imports
+import { authReducer } from './state/auth.reducer';
+import { AuthEffects } from './state/auth.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +63,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     ForgotPasswordComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -72,9 +83,14 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     CustomerInboxComponent,
     CourierDashboardComponent,
     DeliveryMapComponent,
-  ],
 
+    StoreModule.forRoot({ auth: authReducer }),
+    EffectsModule.forRoot([AuthEffects]),
+
+    StoreDevtoolsModule.instrument({ maxAge: 25})
+  ],
   providers: [],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

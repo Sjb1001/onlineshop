@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../state/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -12,54 +12,22 @@ export class LoginComponent {
   email = "";
   password = "";
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  // The Router and AuthService injections are removed here
+  // because NgRx Effects handles them now.
+  constructor(private store: Store) {}
 
   login() {
-    this.authService.login({
-      email: this.email,
-      password: this.password
-    }).subscribe({
+    if (!this.email || !this.password) {
+      alert("Please enter both email and password.");
+      return;
+    }
 
-      next: (res: any) => {
-
-  console.log("LOGIN RESPONSE:", res);
-  console.log("ROLE:", res.role);
-
-  localStorage.setItem("token", res.token);
-  localStorage.setItem("role", res.role);
-  localStorage.setItem("fullname", res.fullname);
-  localStorage.setItem("userId", res.userId);
-
-  alert("Login Successful!");
-
-  if (res.role === "customer") {
-
-  this.router.navigate(['/home']);
-
-} else if (res.role === "seller") {
-
-  this.router.navigate(['/seller']);
-
-} else if (res.role === "admin") {
-
-  this.router.navigate(['/admin']);
-
-} else if (res.role === "courier") {
-
-  this.router.navigate(['/courier']);
-
-}
-
-},
-
-      error: () => {
-        alert("Invalid Email or Password");
+    // Sends the action to the NgRx store to handle the login process
+    this.store.dispatch(AuthActions.login({
+      credentials: {
+        email: this.email,
+        password: this.password
       }
-
-    });
+    }));
   }
-
 }
